@@ -1,0 +1,1 @@
+ C:\\Users\\user\\Desktop\\Share\\jlpt-thai-app\\build\\d1652c119883717f534e5f711a6c0026\\dart_build_result.json:  C:\\Users\\user\\Desktop\\Share\\jlpt-thai-app\\.dart_tool\\package_config.json C:\\Users\\user\\Desktop\\Share\\jlpt-thai-app\\pubspec.yaml C:\\flutter\\bin\\cache\\dart-sdk\\version c:\\users\\user\\desktop\\share\\jlpt-thai-app\\.dart_tool\\package_config.json
