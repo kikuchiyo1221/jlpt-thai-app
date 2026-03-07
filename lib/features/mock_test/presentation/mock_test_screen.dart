@@ -17,6 +17,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
   int _score = 0;
   bool _showResult = false;
   bool _testStarted = false;
+  List<int?> _userAnswers = [];
 
   List<Map<String, dynamic>> get _questions => _questionsData[_selectedLevel]!;
 
@@ -27,6 +28,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
       _selectedAnswer = null;
       _score = 0;
       _showResult = false;
+      _userAnswers = List.filled(_questions.length, null);
     });
   }
 
@@ -370,6 +372,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
 
   void _nextQuestion() async {
     final question = _questions[_currentQuestion];
+    _userAnswers[_currentQuestion] = _selectedAnswer;
     if (_selectedAnswer == question['answer']) {
       _score++;
     }
@@ -396,111 +399,286 @@ class _MockTestScreenState extends State<MockTestScreen> {
     final passed = percentage >= 70;
 
     return SafeArea(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  gradient: passed
-                      ? const LinearGradient(colors: [Color(0xFF10B981), Color(0xFF34D399)])
-                      : const LinearGradient(colors: [Color(0xFFF59E0B), Color(0xFFFBBF24)]),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: (passed ? AppTheme.successColor : AppTheme.warningColor)
-                          .withValues(alpha: 0.3),
-                      blurRadius: 24,
-                      offset: const Offset(0, 8),
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            // Score summary
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                gradient: passed
+                    ? const LinearGradient(colors: [Color(0xFF10B981), Color(0xFF34D399)])
+                    : const LinearGradient(colors: [Color(0xFFF59E0B), Color(0xFFFBBF24)]),
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    color: (passed ? AppTheme.successColor : AppTheme.warningColor)
+                        .withValues(alpha: 0.3),
+                    blurRadius: 24,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Icon(
+                    passed ? Icons.emoji_events : Icons.trending_up,
+                    color: Colors.white,
+                    size: 48,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    '$percentage%',
+                    style: const TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-                child: Icon(
-                  passed ? Icons.emoji_events : Icons.trending_up,
-                  color: Colors.white,
-                  size: 56,
-                ),
+                  ),
+                  Text(
+                    'ตอบถูก $_score/${_questions.length} ข้อ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white.withValues(alpha: 0.9),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    passed ? 'เก่งมาก!' : 'พยายามอีกนิดนะ!',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 28),
-              Text(
-                'JLPT $_selectedLevel',
+            ),
+            const SizedBox(height: 24),
+
+            // Review header
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'ทบทวนคำตอบ',
                 style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: AppTheme.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                '$percentage%',
-                style: TextStyle(
-                  fontSize: 52,
+                  fontSize: 20,
                   fontWeight: FontWeight.w800,
                   color: AppTheme.textPrimary,
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                'ตอบถูก $_score/${_questions.length} ข้อ',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: AppTheme.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                passed ? 'เก่งมาก!' : 'พยายามอีกนิดนะ!',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: passed ? AppTheme.successColor : AppTheme.warningColor,
-                ),
-              ),
-              const SizedBox(height: 40),
-              SizedBox(
+            ),
+            const SizedBox(height: 16),
+
+            // Question review list
+            ...List.generate(_questions.length, (i) {
+              final question = _questions[i];
+              final userAnswer = _userAnswers[i];
+              final correctAnswer = question['answer'] as int;
+              final isCorrect = userAnswer == correctAnswer;
+              final choices = question['choices'] as List<String>;
+              final explanation = question['explanation'] as String;
+
+              return Container(
                 width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: _startTest,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
+                margin: const EdgeInsets.only(bottom: 14),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: isCorrect
+                        ? const Color(0xFF10B981).withValues(alpha: 0.4)
+                        : const Color(0xFFEF4444).withValues(alpha: 0.4),
+                    width: 1.5,
                   ),
-                  child: const Text(
-                    'ลองอีกครั้ง',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Question header with correct/incorrect badge
+                    Row(
+                      children: [
+                        Container(
+                          width: 28,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: isCorrect
+                                ? const Color(0xFF10B981)
+                                : const Color(0xFFEF4444),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isCorrect ? Icons.check : Icons.close,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          'ข้อ ${i + 1}',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: isCorrect
+                                ? const Color(0xFF10B981)
+                                : const Color(0xFFEF4444),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Question text
+                    Text(
+                      question['question'] as String,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: AppTheme.textPrimary,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    // User's wrong answer
+                    if (!isCorrect && userAnswer != null)
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        margin: const EdgeInsets.only(bottom: 6),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEF4444).withValues(alpha: 0.08),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.close, color: Color(0xFFEF4444), size: 16),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                '${String.fromCharCode(65 + userAnswer)}. ${choices[userAnswer]}',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFFEF4444),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    // Correct answer
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF10B981).withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.check_circle, color: Color(0xFF10B981), size: 16),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              '${String.fromCharCode(65 + correctAnswer)}. ${choices[correctAnswer]}',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF10B981),
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Explanation
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: AppTheme.primaryColor.withValues(alpha: 0.05),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(Icons.lightbulb_outline, color: AppTheme.primaryColor, size: 18),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              explanation,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: AppTheme.textPrimary,
+                                height: 1.5,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+
+            const SizedBox(height: 12),
+
+            // Action buttons
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                onPressed: _startTest,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppTheme.primaryColor,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
                   ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: OutlinedButton(
-                  onPressed: () => setState(() {
-                    _testStarted = false;
-                    _showResult = false;
-                  }),
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                  child: const Text(
-                    'เลือกระดับอื่น',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-                  ),
+                child: const Text(
+                  'ลองอีกครั้ง',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: OutlinedButton(
+                onPressed: () => setState(() {
+                  _testStarted = false;
+                  _showResult = false;
+                }),
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                ),
+                child: const Text(
+                  'เลือกระดับอื่น',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
@@ -513,26 +691,31 @@ final _questionsData = {
       'question': '「たべる」の漢字はどれですか。',
       'choices': ['食べる', '飲べる', '読べる', '聞べる'],
       'answer': 0,
+      'explanation': '「食べる」（たべる）แปลว่า กิน\n食 = อาหาร/กิน　飲 = ดื่ม　読 = อ่าน　聞 = ฟัง',
     },
     {
       'question': '昨日、友だち＿＿映画を見ました。',
       'choices': ['を', 'に', 'と', 'で'],
       'answer': 2,
+      'explanation': '助詞「と」ใช้เมื่อทำกิจกรรมร่วมกับคนอื่น แปลว่า "กับ"\n友だちと映画を見ました = ดูหนังกับเพื่อน',
     },
     {
       'question': '「おおきい」の漢字はどれですか。',
       'choices': ['小さい', '大きい', '多きい', '太きい'],
       'answer': 1,
+      'explanation': '「大きい」（おおきい）แปลว่า ใหญ่\n小さい = เล็ก　大 = ใหญ่　多 = มาก　太 = อ้วน/หนา',
     },
     {
       'question': 'まいにち にほんご＿＿べんきょうします。',
       'choices': ['が', 'に', 'を', 'で'],
       'answer': 2,
+      'explanation': '助詞「を」ใช้แสดงกรรมของกริยา (สิ่งที่ถูกกระทำ)\nにほんごを勉強します = เรียนภาษาญี่ปุ่น',
     },
     {
       'question': '「がっこう」はどういう意味ですか。',
       'choices': ['โรงพยาบาล', 'โรงเรียน', 'ห้องสมุด', 'สถานี'],
       'answer': 1,
+      'explanation': '「学校」（がっこう）แปลว่า โรงเรียน\nโรงพยาบาล = 病院　ห้องสมุด = 図書館　สถานี = 駅',
     },
   ],
   'N4': [
@@ -540,26 +723,31 @@ final _questionsData = {
       'question': '会議に＿＿前に、資料を読んでおいてください。',
       'choices': ['出る', '出た', '出て', '出よう'],
       'answer': 0,
+      'explanation': '文法「〜前に」ต้องใช้กริยารูปพจนานุกรม (辞書形)\n出る前に = ก่อนออก（ไปประชุม）\nรูปนี้แปลว่า "ก่อนที่จะ〜 กรุณาอ่านเอกสารไว้ก่อน"',
     },
     {
       'question': 'このケーキはおいしい＿＿です。',
       'choices': ['よう', 'そう', 'らしい', 'みたい'],
       'answer': 1,
+      'explanation': '「〜そうです」ใช้กับคำคุณศัพท์เมื่อดูจากรูปลักษณ์ แปลว่า "ดูเหมือนว่า〜"\nおいしそう = ดูอร่อย（ตัดい出してใช้そう）\nต่างจาก よう/みたい ที่ต้องต่อท้ายแบบอื่น',
     },
     {
       'question': '日本に来て＿＿、毎日日本語を使っています。',
       'choices': ['から', 'まで', 'ので', 'のに'],
       'answer': 0,
+      'explanation': '「〜てから」แปลว่า "ตั้งแต่〜" ใช้แสดงจุดเริ่มต้นของการกระทำ\n日本に来てから = ตั้งแต่มาญี่ปุ่น（ก็ใช้ภาษาญี่ปุ่นทุกวัน）',
     },
     {
       'question': '先生に＿＿て、漢字の読み方を教えてもらいました。',
       'choices': ['聞い', '聞き', '聞か', '聞く'],
       'answer': 0,
+      'explanation': '「聞く」เป็นกริยาหมู่ 1 (五段動詞) รูป て → 聞いて\nกริยาที่ลงท้าย く → いて（เช่น 書く→書いて）\n聞いて教えてもらう = ถามแล้วให้สอน',
     },
     {
       'question': '電車が＿＿そうです。（もうすぐ来る）',
       'choices': ['来る', '来', '来い', '来た'],
       'answer': 1,
+      'explanation': '「〜そうです」（ดูเหมือนว่าจะ〜）ใช้กับกริยา ต้องตัด語尾ออก\n来る → 来（き）そうです = ดูเหมือนรถไฟจะมา\nต่างจาก来るそうです（ได้ยินมาว่า = 伝聞）',
     },
   ],
   'N3': [
@@ -567,26 +755,31 @@ final _questionsData = {
       'question': '彼は何も言わない＿＿、部屋を出て行った。',
       'choices': ['まま', 'ほど', 'ばかり', 'だけ'],
       'answer': 0,
+      'explanation': '「〜まま」แปลว่า "ในสภาพที่〜" "โดยที่ยังคง〜"\n何も言わないまま = โดยไม่พูดอะไรเลย（ก็ออกไปจากห้อง）\nแสดงว่าสภาพเดิมไม่เปลี่ยนแปลง',
     },
     {
       'question': 'この問題は難し＿＿、誰にもわからなかった。',
       'choices': ['すぎて', 'すぎる', 'すぎた', 'すぎ'],
       'answer': 0,
+      'explanation': '「〜すぎる」แปลว่า "〜เกินไป" ใช้รูป て เพื่อเชื่อมเหตุผล\n難しすぎて = ยากเกินไป（จนไม่มีใครเข้าใจ）\nคำคุณศัพท์ い → ตัด い + すぎて',
     },
     {
       'question': '努力した＿＿、結果が出なかった。',
       'choices': ['のに', 'ので', 'から', 'けど'],
       'answer': 0,
+      'explanation': '「〜のに」แปลว่า "ทั้งๆ ที่〜" แสดงความขัดแย้ง/ผิดหวัง\n努力したのに = ทั้งๆ ที่พยายามแล้ว（แต่ไม่ได้ผลลัพธ์）\nต่างจาก ので/から（เพราะว่า）และ けど（แต่ว่า ไม่มีอารมณ์ผิดหวัง）',
     },
     {
       'question': '彼女は歌手として＿＿、女優としても有名です。',
       'choices': ['だけでなく', 'ばかりか', 'しか', 'どころか'],
       'answer': 0,
+      'explanation': '「〜だけでなく」แปลว่า "ไม่เพียงแค่〜（แต่ยังอีกด้วย）"\n歌手としてだけでなく、女優としても = ไม่เพียงแค่ในฐานะนักร้อง แต่ยังเป็นนักแสดงที่มีชื่อเสียงด้วย\nしか ใช้กับปฏิเสธ, どころか แสดงระดับมากกว่า',
     },
     {
       'question': '社長＿＿意見を言うのは勇気がいる。',
       'choices': ['に関して', 'にとって', 'に対して', 'について'],
       'answer': 2,
+      'explanation': '「〜に対して」แปลว่า "ต่อ〜" ใช้แสดงเป้าหมายของการกระทำ\n社長に対して意見を言う = แสดงความเห็นต่อประธานบริษัท\nに関して/について = เกี่ยวกับ, にとって = สำหรับ',
     },
   ],
 };
