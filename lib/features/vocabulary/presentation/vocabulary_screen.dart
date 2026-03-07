@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/data/vocabulary_data.dart';
+import '../../../shared/services/progress_service.dart';
+import 'flashcard_screen.dart';
+import 'vocabulary_detail_screen.dart';
 
-class VocabularyScreen extends StatelessWidget {
+class VocabularyScreen extends StatefulWidget {
   const VocabularyScreen({super.key});
 
   @override
+  State<VocabularyScreen> createState() => _VocabularyScreenState();
+}
+
+class _VocabularyScreenState extends State<VocabularyScreen> {
+  String _selectedLevel = 'N5';
+
+  @override
   Widget build(BuildContext context) {
+    final vocabList = vocabularyData[_selectedLevel]!;
+
     return SafeArea(
       child: Column(
         children: [
@@ -14,25 +27,61 @@ class VocabularyScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'คำศัพท์',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                    color: AppTheme.textPrimary,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'คำศัพท์',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.textPrimary,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 38,
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => FlashcardScreen(
+                                level: _selectedLevel,
+                                words: vocabList,
+                              ),
+                            ),
+                          );
+                          setState(() {}); // Refresh learned status
+                        },
+                        icon: const Icon(Icons.style, size: 18),
+                        label: const Text('แฟลชการ์ด'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.primaryColor,
+                          foregroundColor: Colors.white,
+                          textStyle: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    _levelTab('N5', true),
+                    _levelTab('N5'),
                     const SizedBox(width: 8),
-                    _levelTab('N4', false),
+                    _levelTab('N4'),
                     const SizedBox(width: 8),
-                    _levelTab('N3', false),
+                    _levelTab('N3'),
                     const Spacer(),
                     Text(
-                      '${_sampleVocab.length} คำ',
+                      '${vocabList.length} คำ',
                       style: TextStyle(
                         fontSize: 13,
                         color: AppTheme.textSecondary,
@@ -46,9 +95,11 @@ class VocabularyScreen extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: _sampleVocab.length,
+              itemCount: vocabList.length,
               itemBuilder: (context, index) {
-                final vocab = _sampleVocab[index];
+                final vocab = vocabList[index];
+                final wordKey = '${_selectedLevel}_${vocab['word']}';
+                final isLearned = ProgressService.isWordLearned(wordKey);
                 return Container(
                   margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
@@ -67,7 +118,17 @@ class VocabularyScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(16),
-                      onTap: () {},
+                      onTap: () async {
+                        await Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => VocabularyDetailScreen(
+                              vocab: vocab,
+                              level: _selectedLevel,
+                            ),
+                          ),
+                        );
+                        setState(() {});
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Row(
@@ -114,23 +175,20 @@ class VocabularyScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: AppTheme.primaryColor.withValues(alpha: 0.08),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.volume_up_rounded,
-                                  color: AppTheme.primaryColor,
+                            if (isLearned)
+                              Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: AppTheme.successColor.withValues(alpha: 0.1),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.check_circle,
+                                  color: AppTheme.successColor,
                                   size: 20,
                                 ),
-                                onPressed: () {},
-                                padding: EdgeInsets.zero,
                               ),
-                            ),
                           ],
                         ),
                       ),
@@ -145,36 +203,28 @@ class VocabularyScreen extends StatelessWidget {
     );
   }
 
-  Widget _levelTab(String label, bool active) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      decoration: BoxDecoration(
-        gradient: active ? AppTheme.primaryGradient : null,
-        color: active ? null : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: active ? null : Border.all(color: Colors.grey.shade200),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          color: active ? Colors.white : AppTheme.textSecondary,
+  Widget _levelTab(String label) {
+    final active = _selectedLevel == label;
+    return GestureDetector(
+      onTap: () => setState(() => _selectedLevel = label),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: BoxDecoration(
+          gradient: active ? AppTheme.primaryGradient : null,
+          color: active ? null : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: active ? null : Border.all(color: Colors.grey.shade200),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: active ? Colors.white : AppTheme.textSecondary,
+          ),
         ),
       ),
     );
   }
 }
 
-final _sampleVocab = [
-  {'word': '食べる', 'reading': 'たべる', 'meaning': 'กิน (kin) - to eat'},
-  {'word': '飲む', 'reading': 'のむ', 'meaning': 'ดื่ม (duem) - to drink'},
-  {'word': '行く', 'reading': 'いく', 'meaning': 'ไป (pai) - to go'},
-  {'word': '来る', 'reading': 'くる', 'meaning': 'มา (ma) - to come'},
-  {'word': '見る', 'reading': 'みる', 'meaning': 'ดู (du) - to see'},
-  {'word': '聞く', 'reading': 'きく', 'meaning': 'ฟัง (fang) - to listen'},
-  {'word': '読む', 'reading': 'よむ', 'meaning': 'อ่าน (an) - to read'},
-  {'word': '書く', 'reading': 'かく', 'meaning': 'เขียน (khian) - to write'},
-  {'word': '話す', 'reading': 'はなす', 'meaning': 'พูด (phut) - to speak'},
-  {'word': '買う', 'reading': 'かう', 'meaning': 'ซื้อ (sue) - to buy'},
-];

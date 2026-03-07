@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/services/progress_service.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +48,9 @@ class ProfileScreen extends StatelessWidget {
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white38, width: 3),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Lv.1',
+                        'Lv.${ProgressService.level}',
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w800,
@@ -53,9 +60,9 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    '0 / 500 XP',
-                    style: TextStyle(
+                  Text(
+                    '${ProgressService.totalXp % ProgressService.xpToNextLevel} / ${ProgressService.xpToNextLevel} XP',
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -65,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: LinearProgressIndicator(
-                      value: 0,
+                      value: ProgressService.xpProgress,
                       minHeight: 10,
                       backgroundColor: Colors.white24,
                       valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFFFD700)),
@@ -79,11 +86,11 @@ class ProfileScreen extends StatelessWidget {
             // Stats
             Row(
               children: [
-                _statCard(Icons.local_fire_department, '0', 'วันสตรีค', const Color(0xFFFF6584)),
+                _statCard(Icons.local_fire_department, '${ProgressService.streak}', 'วันสตรีค', const Color(0xFFFF6584)),
                 const SizedBox(width: 10),
-                _statCard(Icons.menu_book, '0', 'คำที่เรียน', AppTheme.primaryColor),
+                _statCard(Icons.menu_book, '${ProgressService.totalWordsLearned}', 'คำที่เรียน', AppTheme.primaryColor),
                 const SizedBox(width: 10),
-                _statCard(Icons.check_circle, '0%', 'ความแม่นยำ', AppTheme.accentColor),
+                _statCard(Icons.check_circle, '${(ProgressService.accuracy * 100).round()}%', 'ความแม่นยำ', AppTheme.accentColor),
               ],
             ),
             const SizedBox(height: 28),
@@ -103,11 +110,11 @@ class ProfileScreen extends StatelessWidget {
               runSpacing: 16,
               children: [
                 _badgeItem(Icons.eco, 'ผู้เริ่มต้น', true, const Color(0xFF10B981)),
-                _badgeItem(Icons.auto_stories, 'นักอ่าน', false, AppTheme.primaryColor),
-                _badgeItem(Icons.brush, 'คันจิมาสเตอร์', false, const Color(0xFFF59E0B)),
-                _badgeItem(Icons.verified, 'สอบผ่าน N5', false, const Color(0xFF3B82F6)),
-                _badgeItem(Icons.local_fire_department, 'สตรีค 7 วัน', false, const Color(0xFFFF6584)),
-                _badgeItem(Icons.stars, 'คะแนนเต็ม', false, const Color(0xFF8B5CF6)),
+                _badgeItem(Icons.auto_stories, 'นักอ่าน', ProgressService.totalWordsLearned >= 10, AppTheme.primaryColor),
+                _badgeItem(Icons.brush, 'คันจิมาสเตอร์', ProgressService.totalWordsLearned >= 30, const Color(0xFFF59E0B)),
+                _badgeItem(Icons.verified, 'สอบผ่าน N5', ProgressService.totalAnswered >= 5 && ProgressService.accuracy >= 0.7, const Color(0xFF3B82F6)),
+                _badgeItem(Icons.local_fire_department, 'สตรีค 7 วัน', ProgressService.streak >= 7, const Color(0xFFFF6584)),
+                _badgeItem(Icons.stars, 'คะแนนเต็ม', ProgressService.totalAnswered >= 5 && ProgressService.accuracy >= 1.0, const Color(0xFF8B5CF6)),
               ],
             ),
             const SizedBox(height: 28),

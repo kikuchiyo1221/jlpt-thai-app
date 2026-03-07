@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/data/grammar_data.dart';
+import 'grammar_practice_screen.dart';
 
-class GrammarScreen extends StatelessWidget {
+class GrammarScreen extends StatefulWidget {
   const GrammarScreen({super.key});
 
   @override
+  State<GrammarScreen> createState() => _GrammarScreenState();
+}
+
+class _GrammarScreenState extends State<GrammarScreen> {
+  String _selectedLevel = 'N5';
+
+  @override
   Widget build(BuildContext context) {
+    final grammarList = grammarData[_selectedLevel]!;
+
     return SafeArea(
       child: Column(
         children: [
@@ -14,22 +25,58 @@ class GrammarScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'ไวยากรณ์',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                    color: AppTheme.textPrimary,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'ไวยากรณ์',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.textPrimary,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 38,
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => GrammarPracticeScreen(
+                                level: _selectedLevel,
+                                grammarList: grammarList,
+                              ),
+                            ),
+                          );
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.quiz, size: 18),
+                        label: const Text('ฝึกหัด'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF6584),
+                          foregroundColor: Colors.white,
+                          textStyle: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    _levelTab('N5', true),
+                    _levelTab('N5'),
                     const SizedBox(width: 8),
-                    _levelTab('N4', false),
+                    _levelTab('N4'),
                     const SizedBox(width: 8),
-                    _levelTab('N3', false),
+                    _levelTab('N3'),
                   ],
                 ),
               ],
@@ -38,9 +85,9 @@ class GrammarScreen extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: _sampleGrammar.length,
+              itemCount: grammarList.length,
               itemBuilder: (context, index) {
-                final grammar = _sampleGrammar[index];
+                final grammar = grammarList[index];
                 return Container(
                   margin: const EdgeInsets.only(bottom: 14),
                   decoration: BoxDecoration(
@@ -79,7 +126,7 @@ class GrammarScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Text(
-                                    'N5',
+                                    _selectedLevel,
                                     style: const TextStyle(
                                       fontSize: 11,
                                       fontWeight: FontWeight.w700,
@@ -170,54 +217,31 @@ class GrammarScreen extends StatelessWidget {
     );
   }
 
-  Widget _levelTab(String label, bool active) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      decoration: BoxDecoration(
-        gradient: active
-            ? const LinearGradient(
-                colors: [Color(0xFFFF6584), Color(0xFFFF8FA3)],
-              )
-            : null,
-        color: active ? null : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: active ? null : Border.all(color: Colors.grey.shade200),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          color: active ? Colors.white : AppTheme.textSecondary,
+  Widget _levelTab(String label) {
+    final active = _selectedLevel == label;
+    return GestureDetector(
+      onTap: () => setState(() => _selectedLevel = label),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: BoxDecoration(
+          gradient: active
+              ? const LinearGradient(
+                  colors: [Color(0xFFFF6584), Color(0xFFFF8FA3)],
+                )
+              : null,
+          color: active ? null : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: active ? null : Border.all(color: Colors.grey.shade200),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: active ? Colors.white : AppTheme.textSecondary,
+          ),
         ),
       ),
     );
   }
 }
-
-final _sampleGrammar = [
-  {
-    'pattern': '～ています',
-    'meaning': 'กำลัง... อยู่ (กำลังทำอยู่)',
-    'example': '今、本を読んでいます。',
-    'translation': 'ตอนนี้กำลังอ่านหนังสืออยู่',
-  },
-  {
-    'pattern': '～たことがあります',
-    'meaning': 'เคย... (ประสบการณ์)',
-    'example': '日本に行ったことがあります。',
-    'translation': 'เคยไปญี่ปุ่น',
-  },
-  {
-    'pattern': '～てもいいですか',
-    'meaning': '...ได้ไหม (ขออนุญาต)',
-    'example': 'ここに座ってもいいですか。',
-    'translation': 'นั่งที่นี่ได้ไหม',
-  },
-  {
-    'pattern': '～なければなりません',
-    'meaning': 'ต้อง... (จำเป็น)',
-    'example': '宿題をしなければなりません。',
-    'translation': 'ต้องทำการบ้าน',
-  },
-];

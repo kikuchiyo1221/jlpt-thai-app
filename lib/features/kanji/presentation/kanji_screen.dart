@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/data/kanji_data.dart';
+import '../../../shared/services/progress_service.dart';
+import 'kanji_detail_screen.dart';
 
-class KanjiScreen extends StatelessWidget {
+class KanjiScreen extends StatefulWidget {
   const KanjiScreen({super.key});
 
   @override
+  State<KanjiScreen> createState() => _KanjiScreenState();
+}
+
+class _KanjiScreenState extends State<KanjiScreen> {
+  String _selectedLevel = 'N5';
+
+  @override
   Widget build(BuildContext context) {
+    final kanjiList = kanjiData[_selectedLevel]!;
+
     return SafeArea(
       child: Column(
         children: [
@@ -25,14 +37,14 @@ class KanjiScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    _levelTab('N5', true),
+                    _levelTab('N5'),
                     const SizedBox(width: 8),
-                    _levelTab('N4', false),
+                    _levelTab('N4'),
                     const SizedBox(width: 8),
-                    _levelTab('N3', false),
+                    _levelTab('N3'),
                     const Spacer(),
                     Text(
-                      '${_sampleKanji.length} ตัว',
+                      '${kanjiList.length} ตัว',
                       style: TextStyle(
                         fontSize: 13,
                         color: AppTheme.textSecondary,
@@ -52,9 +64,9 @@ class KanjiScreen extends StatelessWidget {
                 crossAxisSpacing: 14,
                 mainAxisSpacing: 14,
               ),
-              itemCount: _sampleKanji.length,
+              itemCount: kanjiList.length,
               itemBuilder: (context, index) {
-                final kanji = _sampleKanji[index];
+                final kanji = kanjiList[index];
                 final colors = [
                   const Color(0xFF6C63FF),
                   const Color(0xFFFF6584),
@@ -84,13 +96,26 @@ class KanjiScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
-                      onTap: () {},
+                      onTap: () async {
+                        await Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => KanjiDetailScreen(
+                              kanji: kanji,
+                              level: _selectedLevel,
+                              color: color,
+                            ),
+                          ),
+                        );
+                        setState(() {});
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
+                            Stack(
+                              children: [
+                                Container(
                               width: 64,
                               height: 64,
                               decoration: BoxDecoration(
@@ -107,6 +132,22 @@ class KanjiScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                            ),
+                                if (ProgressService.isWordLearned('kanji_${_selectedLevel}_${kanji['character']}'))
+                                  Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                        color: AppTheme.successColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(Icons.check, color: Colors.white, size: 12),
+                                    ),
+                                  ),
+                              ],
                             ),
                             const SizedBox(height: 12),
                             Text(
@@ -143,38 +184,31 @@ class KanjiScreen extends StatelessWidget {
     );
   }
 
-  Widget _levelTab(String label, bool active) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      decoration: BoxDecoration(
-        gradient: active
-            ? const LinearGradient(
-                colors: [Color(0xFF00BFA6), Color(0xFF4DD0B8)],
-              )
-            : null,
-        color: active ? null : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: active ? null : Border.all(color: Colors.grey.shade200),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          color: active ? Colors.white : AppTheme.textSecondary,
+  Widget _levelTab(String label) {
+    final active = _selectedLevel == label;
+    return GestureDetector(
+      onTap: () => setState(() => _selectedLevel = label),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: BoxDecoration(
+          gradient: active
+              ? const LinearGradient(
+                  colors: [Color(0xFF00BFA6), Color(0xFF4DD0B8)],
+                )
+              : null,
+          color: active ? null : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: active ? null : Border.all(color: Colors.grey.shade200),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: active ? Colors.white : AppTheme.textSecondary,
+          ),
         ),
       ),
     );
   }
 }
-
-final _sampleKanji = [
-  {'character': '日', 'reading': 'にち / ひ', 'meaning': 'วัน, พระอาทิตย์'},
-  {'character': '本', 'reading': 'ほん / もと', 'meaning': 'หนังสือ, ต้นกำเนิด'},
-  {'character': '人', 'reading': 'じん / ひと', 'meaning': 'คน'},
-  {'character': '大', 'reading': 'だい / おお', 'meaning': 'ใหญ่'},
-  {'character': '学', 'reading': 'がく / まな', 'meaning': 'เรียน'},
-  {'character': '生', 'reading': 'せい / い', 'meaning': 'ชีวิต, เกิด'},
-  {'character': '食', 'reading': 'しょく / た', 'meaning': 'กิน, อาหาร'},
-  {'character': '時', 'reading': 'じ / とき', 'meaning': 'เวลา'},
-];

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/services/progress_service.dart';
+import '../../search/presentation/search_screen.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +47,23 @@ class DashboardScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    gradient: AppTheme.primaryGradient,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const SearchScreen()),
+                    );
+                  },
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      gradient: AppTheme.primaryGradient,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -68,11 +83,11 @@ class DashboardScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _statItem(Icons.local_fire_department, '0 วัน', 'สตรีค', const Color(0xFFFFD700)),
+                      _statItem(Icons.local_fire_department, '${ProgressService.streak} วัน', 'สตรีค', const Color(0xFFFFD700)),
                       Container(width: 1, height: 40, color: Colors.white24),
-                      _statItem(Icons.star_rounded, '0 XP', 'ประสบการณ์', const Color(0xFFFFD700)),
+                      _statItem(Icons.star_rounded, '${ProgressService.totalXp} XP', 'ประสบการณ์', const Color(0xFFFFD700)),
                       Container(width: 1, height: 40, color: Colors.white24),
-                      _statItem(Icons.emoji_events, 'Lv.1', 'ระดับ', const Color(0xFFFFD700)),
+                      _statItem(Icons.emoji_events, 'Lv.${ProgressService.level}', 'ระดับ', const Color(0xFFFFD700)),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -87,9 +102,9 @@ class DashboardScreen extends StatelessWidget {
                             'เลเวลถัดไป',
                             style: TextStyle(color: Colors.white70, fontSize: 12),
                           ),
-                          const Text(
-                            '0 / 500 XP',
-                            style: TextStyle(color: Colors.white70, fontSize: 12),
+                          Text(
+                            '${ProgressService.totalXp % ProgressService.xpToNextLevel} / ${ProgressService.xpToNextLevel} XP',
+                            style: const TextStyle(color: Colors.white70, fontSize: 12),
                           ),
                         ],
                       ),
@@ -97,7 +112,7 @@ class DashboardScreen extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: LinearProgressIndicator(
-                          value: 0,
+                          value: ProgressService.xpProgress,
                           minHeight: 8,
                           backgroundColor: Colors.white24,
                           valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFFFD700)),
