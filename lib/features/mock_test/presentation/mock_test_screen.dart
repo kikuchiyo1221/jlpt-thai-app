@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/progress_service.dart';
+import '../../../shared/widgets/furigana_text.dart';
 
 class MockTestScreen extends StatefulWidget {
   const MockTestScreen({super.key});
@@ -335,7 +336,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Text(
+                  FuriganaText(
                     question['question'] as String,
                     style: const TextStyle(
                       fontSize: 20,
@@ -397,7 +398,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
                           ),
                           const SizedBox(width: 14),
                           Expanded(
-                            child: Text(
+                            child: FuriganaText(
                               choices[i],
                               style: TextStyle(
                                 fontSize: 15,
@@ -626,7 +627,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
                     const SizedBox(height: 10),
 
                     // Question text
-                    Text(
+                    FuriganaText(
                       question['question'] as String,
                       style: TextStyle(
                         fontSize: 15,
