@@ -4,6 +4,7 @@ import '../../features/vocabulary/presentation/vocabulary_screen.dart';
 import '../../features/grammar/presentation/grammar_screen.dart';
 import '../../features/kanji/presentation/kanji_screen.dart';
 import '../../features/mock_test/presentation/mock_test_screen.dart';
+import '../../features/kanji_reading_test/presentation/kanji_reading_test_screen.dart';
 import '../../features/gamification/presentation/profile_screen.dart';
 import '../../shared/widgets/main_scaffold.dart';
 
@@ -32,6 +33,10 @@ final appRouter = GoRouter(
         GoRoute(
           path: '/mock-test',
           builder: (context, state) => const MockTestScreen(),
+        ),
+        GoRoute(
+          path: '/kanji-reading-test',
+          builder: (context, state) => const KanjiReadingTestScreen(),
         ),
         GoRoute(
           path: '/profile',

@@ -16,7 +16,8 @@ class MainScaffold extends StatelessWidget {
         location.startsWith('/kanji')) {
       return 1;
     }
-    if (location.startsWith('/mock-test')) {
+    if (location.startsWith('/mock-test') ||
+        location.startsWith('/kanji-reading-test')) {
       return 2;
     }
     if (location.startsWith('/profile')) {

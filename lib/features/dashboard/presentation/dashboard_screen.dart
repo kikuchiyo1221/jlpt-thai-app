@@ -188,6 +188,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             _menuCard(
               context,
+              icon: Icons.spellcheck,
+              title: 'ทดสอบการอ่านคันจิ',
+              subtitle: 'ทดสอบการอ่านตัวคันจิ',
+              gradient: const LinearGradient(
+                colors: [Color(0xFFE67E22), Color(0xFFF39C12)],
+              ),
+              onTap: () => context.go('/kanji-reading-test'),
+            ),
+            _menuCard(
+              context,
               icon: Icons.quiz_outlined,
               title: 'สอบจำลอง',
               subtitle: 'ทดสอบความรู้ของคุณ',
