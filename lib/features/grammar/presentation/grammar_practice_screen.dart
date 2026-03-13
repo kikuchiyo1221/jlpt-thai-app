@@ -228,11 +228,14 @@ class _GrammarPracticeScreenState extends State<GrammarPracticeScreen> {
     return Scaffold(
       backgroundColor: AppTheme.backgroundColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
               // Header
               Row(
                 children: [
@@ -453,11 +456,16 @@ class _GrammarPracticeScreenState extends State<GrammarPracticeScreen> {
                 );
               }),
 
-              const Spacer(),
+                  ],
+                ),
+              ),
+            ),
 
-              // Next button
-              if (_answered)
-                SizedBox(
+            // Next button (fixed at bottom)
+            if (_answered)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+                child: SizedBox(
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
@@ -475,8 +483,9 @@ class _GrammarPracticeScreenState extends State<GrammarPracticeScreen> {
                     ),
                   ),
                 ),
-              const SizedBox(height: 8),
-            ],
+              ),
+            if (!_answered) const SizedBox(height: 20),
+          ],
           ),
         ),
       ),

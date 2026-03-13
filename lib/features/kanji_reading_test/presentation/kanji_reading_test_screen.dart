@@ -306,11 +306,14 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
     final question = _questions[_currentQuestion];
 
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
             // Header
             Row(
               children: [
@@ -502,10 +505,15 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
               );
             }),
 
-            const Spacer(),
+                ],
+              ),
+            ),
+          ),
 
-            // Next button
-            SizedBox(
+          // Next button (fixed at bottom)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+            child: SizedBox(
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
@@ -527,8 +535,8 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

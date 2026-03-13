@@ -37,14 +37,18 @@ class _TeacherSelectionSheetState extends State<TeacherSelectionSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.85,
+      ),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
           // Handle bar
           Container(
             width: 40,
@@ -116,7 +120,8 @@ class _TeacherSelectionSheetState extends State<TeacherSelectionSheet> {
               ),
             ),
           ),
-        ],
+          ],
+        ),
       ),
     );
   }
