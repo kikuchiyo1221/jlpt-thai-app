@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../shared/data/mock_test_data.dart';
+import '../../../shared/services/data_service.dart';
 import '../../../shared/services/progress_service.dart';
 import '../../../shared/widgets/furigana_text.dart';
 
@@ -13,14 +13,19 @@ class MockTestScreen extends StatefulWidget {
 }
 
 class _MockTestScreenState extends State<MockTestScreen> {
+  final _dataService = DataService();
   String _selectedLevel = 'N5';
   int _currentQuestion = 0;
   int? _selectedAnswer;
   int _score = 0;
   bool _showResult = false;
   bool _testStarted = false;
+  bool _isLoading = false;
   List<int?> _userAnswers = [];
   List<Map<String, dynamic>> _questions = [];
+
+  // Cached question pool per level
+  final Map<String, List<Map<String, dynamic>>> _questionPool = {};
 
   // Track used questions and incorrect concept groups across retries
   final Map<String, Set<String>> _usedQuestionIds = {};
@@ -28,8 +33,15 @@ class _MockTestScreenState extends State<MockTestScreen> {
 
   static const int _questionsPerTest = 5;
 
-  List<Map<String, dynamic>> _selectQuestions() {
-    final pool = questionPool[_selectedLevel]!;
+  Future<List<Map<String, dynamic>>> _getPool() async {
+    if (!_questionPool.containsKey(_selectedLevel)) {
+      _questionPool[_selectedLevel] =
+          await _dataService.loadQuestions(_selectedLevel);
+    }
+    return _questionPool[_selectedLevel]!;
+  }
+
+  List<Map<String, dynamic>> _selectQuestions(List<Map<String, dynamic>> pool) {
     final used = _usedQuestionIds[_selectedLevel] ??= {};
     final incorrectGrps = _incorrectGroups[_selectedLevel] ??= {};
 
@@ -99,11 +111,14 @@ class _MockTestScreenState extends State<MockTestScreen> {
     return selected;
   }
 
-  void _startTest() {
-    final questions = _selectQuestions();
+  void _startTest() async {
+    setState(() => _isLoading = true);
+    final pool = await _getPool();
+    final questions = _selectQuestions(pool);
     setState(() {
       _questions = questions;
       _testStarted = true;
+      _isLoading = false;
       _currentQuestion = 0;
       _selectedAnswer = null;
       _score = 0;
@@ -125,6 +140,9 @@ class _MockTestScreenState extends State<MockTestScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
     if (_showResult) return _buildResultScreen();
     if (_testStarted) return _buildQuestionScreen();
     return _buildLevelSelectScreen();
@@ -353,7 +371,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
 
             // Choices
             ...List.generate(4, (i) {
-              final choices = question['choices'] as List<String>;
+              final choices = question['choices'] as List;
               final isSelected = _selectedAnswer == i;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
@@ -567,7 +585,7 @@ class _MockTestScreenState extends State<MockTestScreen> {
               final userAnswer = _userAnswers[i];
               final correctAnswer = question['answer'] as int;
               final isCorrect = userAnswer == correctAnswer;
-              final choices = question['choices'] as List<String>;
+              final choices = question['choices'] as List;
               final explanation = question['explanation'] as String;
 
               return Container(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../shared/data/kanji_data.dart';
+import '../../../shared/services/data_service.dart';
 import '../../../shared/services/progress_service.dart';
 
 class KanjiReadingTestScreen extends StatefulWidget {
@@ -12,14 +12,20 @@ class KanjiReadingTestScreen extends StatefulWidget {
 }
 
 class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
+  final _dataService = DataService();
   String _selectedLevel = 'N5';
   int _currentQuestion = 0;
   int? _selectedAnswer;
   int _score = 0;
   bool _showResult = false;
   bool _testStarted = false;
+  bool _isLoading = false;
   List<int?> _userAnswers = [];
   List<_KanjiQuestion> _questions = [];
+
+  // Cached kanji pool and counts per level
+  final Map<String, List<Map<String, dynamic>>> _kanjiPool = {};
+  final Map<String, int> _kanjiCounts = {};
 
   // Track used kanji indices and incorrect ones for adaptive retry
   final Map<String, Set<int>> _usedIndices = {};
@@ -27,8 +33,22 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
 
   static const int _questionsPerTest = 5;
 
-  List<_KanjiQuestion> _generateQuestions() {
-    final pool = kanjiData[_selectedLevel]!;
+  @override
+  void initState() {
+    super.initState();
+    _loadCounts();
+  }
+
+  Future<void> _loadCounts() async {
+    for (final level in ['N5', 'N4', 'N3']) {
+      final data = await _dataService.loadKanji(level);
+      _kanjiPool[level] = data;
+      _kanjiCounts[level] = data.length;
+    }
+    if (mounted) setState(() {});
+  }
+
+  List<_KanjiQuestion> _generateQuestions(List<Map<String, dynamic>> pool) {
     final used = _usedIndices[_selectedLevel] ??= {};
     final incorrect = _incorrectIndices[_selectedLevel] ??= {};
 
@@ -73,14 +93,14 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
     final questions = <_KanjiQuestion>[];
     for (final idx in selectedIndices) {
       final kanji = pool[idx];
-      final correctReading = kanji['reading']!;
+      final correctReading = kanji['reading']?.toString() ?? kanji['onyomi']?.toString() ?? '';
 
       // Pick 3 wrong readings from other kanji
       final otherReadings = pool
           .asMap()
           .entries
           .where((e) => e.key != idx)
-          .map((e) => e.value['reading']!)
+          .map((e) => e.value['reading']?.toString() ?? e.value['onyomi']?.toString() ?? '')
           .toList();
       otherReadings.shuffle();
       final wrongReadings = otherReadings.take(3).toList();
@@ -96,9 +116,9 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
 
       questions.add(_KanjiQuestion(
         kanjiIndex: idx,
-        character: kanji['character']!,
+        character: kanji['character']?.toString() ?? '',
         correctReading: correctReading,
-        meaning: kanji['meaning']!,
+        meaning: kanji['meaning']?.toString() ?? '',
         choices: shuffledChoices,
         answer: answer,
       ));
@@ -108,11 +128,19 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
     return questions;
   }
 
-  void _startTest() {
-    final questions = _generateQuestions();
+  void _startTest() async {
+    setState(() => _isLoading = true);
+    if (!_kanjiPool.containsKey(_selectedLevel)) {
+      final data = await _dataService.loadKanji(_selectedLevel);
+      _kanjiPool[_selectedLevel] = data;
+      _kanjiCounts[_selectedLevel] = data.length;
+    }
+    final pool = _kanjiPool[_selectedLevel]!;
+    final questions = _generateQuestions(pool);
     setState(() {
       _questions = questions;
       _testStarted = true;
+      _isLoading = false;
       _currentQuestion = 0;
       _selectedAnswer = null;
       _score = 0;
@@ -134,6 +162,9 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
     if (_showResult) return _buildResultScreen();
     if (_testStarted) return _buildQuestionScreen();
     return _buildLevelSelectScreen();
@@ -166,21 +197,21 @@ class _KanjiReadingTestScreenState extends State<KanjiReadingTestScreen> {
             _testLevelCard(
               'N5',
               'พื้นฐาน',
-              '${kanjiData['N5']!.length} ตัวอักษร',
+              '${_kanjiCounts['N5'] ?? '...'} ตัวอักษร',
               const LinearGradient(colors: [Color(0xFF6C63FF), Color(0xFF9D97FF)]),
             ),
             const SizedBox(height: 14),
             _testLevelCard(
               'N4',
               'ระดับกลาง-ต้น',
-              '${kanjiData['N4']!.length} ตัวอักษร',
+              '${_kanjiCounts['N4'] ?? '...'} ตัวอักษร',
               const LinearGradient(colors: [Color(0xFFFF6584), Color(0xFFFF8FA3)]),
             ),
             const SizedBox(height: 14),
             _testLevelCard(
               'N3',
               'ระดับกลาง',
-              '${kanjiData['N3']!.length} ตัวอักษร',
+              '${_kanjiCounts['N3'] ?? '...'} ตัวอักษร',
               const LinearGradient(colors: [Color(0xFF00BFA6), Color(0xFF4DD0B8)]),
             ),
           ],

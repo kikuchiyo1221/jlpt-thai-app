@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../shared/data/vocabulary_data.dart';
-import '../../../shared/data/kanji_data.dart';
-import '../../../shared/data/grammar_data.dart';
+import '../../../shared/services/data_service.dart';
 import '../../vocabulary/presentation/vocabulary_detail_screen.dart';
 import '../../kanji/presentation/kanji_detail_screen.dart';
 
@@ -15,8 +13,11 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final _controller = TextEditingController();
+  final _dataService = DataService();
   String _query = '';
   String _filter = 'all'; // all, vocab, kanji, grammar
+  List<_SearchResult> _results = [];
+  bool _isSearching = false;
 
   @override
   void dispose() {
@@ -24,24 +25,34 @@ class _SearchScreenState extends State<SearchScreen> {
     super.dispose();
   }
 
-  List<_SearchResult> _search(String query) {
-    if (query.isEmpty) return [];
+  Future<void> _search(String query) async {
+    if (query.isEmpty) {
+      setState(() => _results = []);
+      return;
+    }
+
+    setState(() => _isSearching = true);
     final q = query.toLowerCase();
     final results = <_SearchResult>[];
+    final levels = ['N5', 'N4', 'N3'];
 
     if (_filter == 'all' || _filter == 'vocab') {
-      for (final level in vocabularyData.keys) {
-        for (final v in vocabularyData[level]!) {
-          if (v['word']!.contains(q) ||
-              v['reading']!.contains(q) ||
-              v['meaning']!.toLowerCase().contains(q)) {
+      for (final level in levels) {
+        final vocabList = await _dataService.loadVocabulary(level);
+        for (final v in vocabList) {
+          final word = v['word']?.toString() ?? '';
+          final reading = v['reading']?.toString() ?? '';
+          final meaning = v['meaning']?.toString() ?? '';
+          if (word.contains(q) ||
+              reading.contains(q) ||
+              meaning.toLowerCase().contains(q)) {
             results.add(_SearchResult(
               type: 'vocab',
               level: level,
-              title: v['word']!,
-              subtitle: v['reading']!,
-              detail: v['meaning']!,
-              data: v,
+              title: word,
+              subtitle: reading,
+              detail: meaning,
+              data: v.map((k, val) => MapEntry(k, val.toString())),
             ));
           }
         }
@@ -49,18 +60,24 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     if (_filter == 'all' || _filter == 'kanji') {
-      for (final level in kanjiData.keys) {
-        for (final k in kanjiData[level]!) {
-          if (k['character']!.contains(q) ||
-              k['reading']!.contains(q) ||
-              k['meaning']!.toLowerCase().contains(q)) {
+      for (final level in levels) {
+        final kanjiList = await _dataService.loadKanji(level);
+        for (final k in kanjiList) {
+          final character = k['character']?.toString() ?? '';
+          final reading = k['reading']?.toString() ??
+              k['onyomi']?.toString() ??
+              '';
+          final meaning = k['meaning']?.toString() ?? '';
+          if (character.contains(q) ||
+              reading.contains(q) ||
+              meaning.toLowerCase().contains(q)) {
             results.add(_SearchResult(
               type: 'kanji',
               level: level,
-              title: k['character']!,
-              subtitle: k['reading']!,
-              detail: k['meaning']!,
-              data: k,
+              title: character,
+              subtitle: reading,
+              detail: meaning,
+              data: k.map((key, val) => MapEntry(key, val.toString())),
             ));
           }
         }
@@ -68,31 +85,36 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     if (_filter == 'all' || _filter == 'grammar') {
-      for (final level in grammarData.keys) {
-        for (final g in grammarData[level]!) {
-          if (g['pattern']!.contains(q) ||
-              g['meaning']!.toLowerCase().contains(q) ||
-              g['example']!.contains(q)) {
+      for (final level in levels) {
+        final grammarList = await _dataService.loadGrammar(level);
+        for (final g in grammarList) {
+          final pattern = g['pattern']?.toString() ?? '';
+          final meaning = g['meaning']?.toString() ?? '';
+          final example = g['example']?.toString() ?? '';
+          if (pattern.contains(q) ||
+              meaning.toLowerCase().contains(q) ||
+              example.contains(q)) {
             results.add(_SearchResult(
               type: 'grammar',
               level: level,
-              title: g['pattern']!,
-              subtitle: g['meaning']!,
-              detail: g['example']!,
-              data: g,
+              title: pattern,
+              subtitle: meaning,
+              detail: example,
+              data: g.map((key, val) => MapEntry(key, val.toString())),
             ));
           }
         }
       }
     }
 
-    return results;
+    setState(() {
+      _results = results;
+      _isSearching = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final results = _search(_query);
-
     return Scaffold(
       backgroundColor: AppTheme.backgroundColor,
       body: SafeArea(
@@ -114,7 +136,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Icon(Icons.arrow_back, size: 20, color: AppTheme.textPrimary),
+                          child: Icon(Icons.arrow_back,
+                              size: 20, color: AppTheme.textPrimary),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -129,8 +152,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                   const SizedBox(height: 16),
-
-                  // Search bar
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -146,28 +167,34 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: TextField(
                       controller: _controller,
                       autofocus: true,
-                      onChanged: (v) => setState(() => _query = v),
+                      onChanged: (v) {
+                        _query = v;
+                        _search(v);
+                      },
                       decoration: InputDecoration(
                         hintText: 'พิมพ์คำญี่ปุ่น, ไทย หรือ อังกฤษ...',
-                        hintStyle: TextStyle(color: AppTheme.textSecondary, fontSize: 15),
-                        prefixIcon: Icon(Icons.search, color: AppTheme.textSecondary),
+                        hintStyle: TextStyle(
+                            color: AppTheme.textSecondary, fontSize: 15),
+                        prefixIcon:
+                            Icon(Icons.search, color: AppTheme.textSecondary),
                         suffixIcon: _query.isNotEmpty
                             ? IconButton(
-                                icon: Icon(Icons.clear, color: AppTheme.textSecondary, size: 20),
+                                icon: Icon(Icons.clear,
+                                    color: AppTheme.textSecondary, size: 20),
                                 onPressed: () {
                                   _controller.clear();
-                                  setState(() => _query = '');
+                                  _query = '';
+                                  _search('');
                                 },
                               )
                             : null,
                         border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 14),
                       ),
                     ),
                   ),
                   const SizedBox(height: 12),
-
-                  // Filter chips
                   Row(
                     children: [
                       _filterChip('all', 'ทั้งหมด'),
@@ -183,21 +210,22 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             const SizedBox(height: 12),
-
-            // Results
             Expanded(
-              child: _query.isEmpty
-                  ? _buildEmptyState()
-                  : results.isEmpty
-                      ? _buildNoResults()
-                      : ListView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          itemCount: results.length,
-                          itemBuilder: (context, index) {
-                            final r = results[index];
-                            return _buildResultCard(r);
-                          },
-                        ),
+              child: _isSearching
+                  ? const Center(child: CircularProgressIndicator())
+                  : _query.isEmpty
+                      ? _buildEmptyState()
+                      : _results.isEmpty
+                          ? _buildNoResults()
+                          : ListView.builder(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              itemCount: _results.length,
+                              itemBuilder: (context, index) {
+                                final r = _results[index];
+                                return _buildResultCard(r);
+                              },
+                            ),
             ),
           ],
         ),
@@ -208,7 +236,10 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget _filterChip(String value, String label) {
     final active = _filter == value;
     return GestureDetector(
-      onTap: () => setState(() => _filter = value),
+      onTap: () {
+        setState(() => _filter = value);
+        _search(_query);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
         decoration: BoxDecoration(
@@ -259,7 +290,10 @@ class _SearchScreenState extends State<SearchScreen> {
           const SizedBox(height: 16),
           Text(
             'ไม่พบผลลัพธ์',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: AppTheme.textPrimary),
           ),
           const SizedBox(height: 8),
           Text(
@@ -321,7 +355,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                           const SizedBox(width: 8),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               color: typeConfig.color.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(6),
@@ -337,7 +372,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                           const SizedBox(width: 4),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               color: Colors.grey.shade100,
                               borderRadius: BorderRadius.circular(6),
@@ -356,11 +392,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       const SizedBox(height: 3),
                       Text(
                         r.subtitle,
-                        style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
+                        style: TextStyle(
+                            fontSize: 13, color: AppTheme.textSecondary),
                       ),
                       Text(
                         r.detail,
-                        style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
+                        style: TextStyle(
+                            fontSize: 13, color: AppTheme.textSecondary),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -400,19 +438,20 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ));
       case 'grammar':
-        // Just show the grammar info in a dialog for now
         final g = r.data;
         showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)),
             contentPadding: const EdgeInsets.all(24),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [Color(0xFFFF6584), Color(0xFFFF8FA3)],
@@ -420,13 +459,21 @@ class _SearchScreenState extends State<SearchScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(r.level,
-                      style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Colors.white)),
+                      style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white)),
                 ),
                 const SizedBox(height: 12),
-                Text(g['pattern']!,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
+                Text(g['pattern'] ?? '',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        color: AppTheme.textPrimary)),
                 const SizedBox(height: 8),
-                Text(g['meaning']!, style: TextStyle(fontSize: 15, color: AppTheme.textSecondary)),
+                Text(g['meaning'] ?? '',
+                    style: TextStyle(
+                        fontSize: 15, color: AppTheme.textSecondary)),
                 const SizedBox(height: 16),
                 Container(
                   width: double.infinity,
@@ -438,10 +485,15 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(g['example']!,
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppTheme.textPrimary)),
+                      Text(g['example'] ?? '',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppTheme.textPrimary)),
                       const SizedBox(height: 4),
-                      Text(g['translation']!, style: TextStyle(fontSize: 14, color: AppTheme.textSecondary)),
+                      Text(g['translation'] ?? '',
+                          style: TextStyle(
+                              fontSize: 14, color: AppTheme.textSecondary)),
                     ],
                   ),
                 ),
@@ -460,7 +512,7 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 class _SearchResult {
-  final String type; // vocab, kanji, grammar
+  final String type;
   final String level;
   final String title;
   final String subtitle;

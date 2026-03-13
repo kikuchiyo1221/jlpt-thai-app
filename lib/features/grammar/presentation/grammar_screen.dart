@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../shared/data/grammar_data.dart';
+import '../../../shared/services/data_service.dart';
 import 'grammar_practice_screen.dart';
 
 class GrammarScreen extends StatefulWidget {
@@ -11,12 +11,33 @@ class GrammarScreen extends StatefulWidget {
 }
 
 class _GrammarScreenState extends State<GrammarScreen> {
+  final _dataService = DataService();
   String _selectedLevel = 'N5';
+  List<Map<String, dynamic>> _grammarList = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    setState(() => _isLoading = true);
+    final data = await _dataService.loadGrammar(_selectedLevel);
+    setState(() {
+      _grammarList = data;
+      _isLoading = false;
+    });
+  }
+
+  void _changeLevel(String level) {
+    _selectedLevel = level;
+    _loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final grammarList = grammarData[_selectedLevel]!;
-
     return SafeArea(
       child: Column(
         children: [
@@ -40,17 +61,23 @@ class _GrammarScreenState extends State<GrammarScreen> {
                     SizedBox(
                       height: 38,
                       child: ElevatedButton.icon(
-                        onPressed: () async {
-                          await Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => GrammarPracticeScreen(
-                                level: _selectedLevel,
-                                grammarList: grammarList,
-                              ),
-                            ),
-                          );
-                          setState(() {});
-                        },
+                        onPressed: _isLoading
+                            ? null
+                            : () async {
+                                final list = _grammarList
+                                    .map((e) => e.map(
+                                        (k, v) => MapEntry(k, v.toString())))
+                                    .toList();
+                                await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => GrammarPracticeScreen(
+                                      level: _selectedLevel,
+                                      grammarList: list,
+                                    ),
+                                  ),
+                                );
+                                setState(() {});
+                              },
                         icon: const Icon(Icons.quiz, size: 18),
                         label: const Text('ฝึกหัด'),
                         style: ElevatedButton.styleFrom(
@@ -83,134 +110,147 @@ class _GrammarScreenState extends State<GrammarScreen> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: grammarList.length,
-              itemBuilder: (context, index) {
-                final grammar = grammarList[index];
-                return Container(
-                  margin: const EdgeInsets.only(bottom: 14),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.04),
-                        blurRadius: 12,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(20),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [Color(0xFFFF6584), Color(0xFFFF8FA3)],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    _selectedLevel,
-                                    style: const TextStyle(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Text(
-                                    grammar['pattern']!,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppTheme.textPrimary,
-                                    ),
-                                  ),
-                                ),
-                              ],
+            child: _isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: _grammarList.length,
+                    itemBuilder: (context, index) {
+                      final grammar = _grammarList[index];
+                      final pattern = grammar['pattern']?.toString() ?? '';
+                      final meaning = grammar['meaning']?.toString() ?? '';
+                      final example = grammar['example']?.toString() ?? '';
+                      final translation =
+                          grammar['translation']?.toString() ?? '';
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 14),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.04),
+                              blurRadius: 12,
+                              offset: const Offset(0, 2),
                             ),
-                            const SizedBox(height: 10),
-                            Text(
-                              grammar['meaning']!,
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: AppTheme.textSecondary,
-                              ),
-                            ),
-                            const SizedBox(height: 14),
-                            Container(
-                              padding: const EdgeInsets.all(14),
-                              decoration: BoxDecoration(
-                                color: AppTheme.backgroundColor,
-                                borderRadius: BorderRadius.circular(14),
-                              ),
+                          ],
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(20),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
-                                        Icons.format_quote_rounded,
-                                        size: 16,
-                                        color: AppTheme.primaryColor,
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            colors: [
+                                              Color(0xFFFF6584),
+                                              Color(0xFFFF8FA3)
+                                            ],
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Text(
+                                          _selectedLevel,
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                       ),
-                                      const SizedBox(width: 6),
-                                      const Text(
-                                        'ตัวอย่าง',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppTheme.primaryColor,
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: Text(
+                                          pattern,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppTheme.textPrimary,
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 10),
                                   Text(
-                                    grammar['example']!,
+                                    meaning,
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppTheme.textPrimary,
+                                      fontSize: 15,
+                                      color: AppTheme.textSecondary,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    grammar['translation']!,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: AppTheme.textSecondary,
+                                  const SizedBox(height: 14),
+                                  Container(
+                                    padding: const EdgeInsets.all(14),
+                                    decoration: BoxDecoration(
+                                      color: AppTheme.backgroundColor,
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.format_quote_rounded,
+                                              size: 16,
+                                              color: AppTheme.primaryColor,
+                                            ),
+                                            const SizedBox(width: 6),
+                                            const Text(
+                                              'ตัวอย่าง',
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w600,
+                                                color:
+                                                    AppTheme.primaryColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          example,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppTheme.textPrimary,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          translation,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: AppTheme.textSecondary,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
@@ -220,7 +260,7 @@ class _GrammarScreenState extends State<GrammarScreen> {
   Widget _levelTab(String label) {
     final active = _selectedLevel == label;
     return GestureDetector(
-      onTap: () => setState(() => _selectedLevel = label),
+      onTap: () => _changeLevel(label),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(
