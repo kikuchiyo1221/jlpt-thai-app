@@ -43,28 +43,52 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Row(
               children: [
                 if (teacher != null) ...[
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          teacher.color,
-                          teacher.color.withValues(alpha: 0.7),
-                        ],
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Text(
-                        teacher.kanjiAvatar,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              teacher.color,
+                              teacher.color.withValues(alpha: 0.7),
+                            ],
+                          ),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Text(
+                            teacher.kanjiAvatar,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Positioned(
+                        right: -2,
+                        bottom: -2,
+                        child: Container(
+                          width: 22,
+                          height: 22,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.1),
+                                blurRadius: 4,
+                              ),
+                            ],
+                          ),
+                          child: Icon(teacher.icon, size: 13, color: teacher.color),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(width: 12),
                 ],
