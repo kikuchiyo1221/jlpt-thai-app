@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/models/teacher_character.dart';
 import '../../../shared/services/progress_service.dart';
 
 class GrammarPracticeScreen extends StatefulWidget {
@@ -91,9 +92,18 @@ class _GrammarPracticeScreenState extends State<GrammarPracticeScreen> {
     }
   }
 
-  void _showResult() {
+  void _showResult() async {
     final pct = (_correctCount / _quizzes.length * 100).round();
     final passed = pct >= 70;
+
+    await ProgressService.completeDailyChallenge();
+
+    if (!mounted) return;
+
+    final teacher = ProgressService.hasSelectedTeacher
+        ? TeacherCharacter.getById(ProgressService.selectedTeacherId)
+        : null;
+    final feedback = teacher?.getFeedback(pct);
 
     showDialog(
       context: context,
@@ -142,6 +152,46 @@ class _GrammarPracticeScreenState extends State<GrammarPracticeScreen> {
                 color: AppTheme.primaryColor,
               ),
             ),
+            // Teacher feedback in dialog
+            if (teacher != null && feedback != null) ...[
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: teacher.color.withValues(alpha: 0.06),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 36,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        color: teacher.color,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          teacher.kanjiAvatar,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        feedback,
+                        style: const TextStyle(fontSize: 13, height: 1.4),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ],
         ),
         actions: [

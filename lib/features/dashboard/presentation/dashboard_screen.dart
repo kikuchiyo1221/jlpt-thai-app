@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/models/teacher_character.dart';
 import '../../../shared/services/progress_service.dart';
+import '../../../shared/widgets/teacher_selection_sheet.dart';
 import '../../search/presentation/search_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -12,37 +14,93 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!ProgressService.hasSelectedTeacher) {
+        TeacherSelectionSheet.show(context, isFirstTime: true).then((_) {
+          if (mounted) setState(() {});
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final hasTeacher = ProgressService.hasSelectedTeacher;
+    final teacher = hasTeacher
+        ? TeacherCharacter.getById(ProgressService.selectedTeacherId)
+        : null;
+
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
+            // Header with teacher greeting
             Row(
               children: [
+                if (teacher != null) ...[
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          teacher.color,
+                          teacher.color.withValues(alpha: 0.7),
+                        ],
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Text(
+                        teacher.kanjiAvatar,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                ],
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'สวัสดี!',
+                        teacher?.greeting ?? 'สวัสดี!',
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: teacher != null ? 16 : 28,
                           fontWeight: FontWeight.w800,
                           color: AppTheme.textPrimary,
                         ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'เรียนภาษาญี่ปุ่นกันเถอะ',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: AppTheme.textSecondary,
-                        ),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          Text(
+                            ProgressService.playerTitle,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: teacher?.color ?? AppTheme.primaryColor,
+                            ),
+                          ),
+                          Text(
+                            ' (${ProgressService.playerTitleJp})',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppTheme.textSecondary,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -68,7 +126,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
+
+            // Daily Challenge Card
+            _dailyChallengeCard(teacher),
+            const SizedBox(height: 16),
 
             // Stats Card
             Container(
@@ -208,6 +270,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _dailyChallengeCard(TeacherCharacter? teacher) {
+    final completed = ProgressService.isDailyChallengeCompleted;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        gradient: completed
+            ? const LinearGradient(colors: [Color(0xFF10B981), Color(0xFF34D399)])
+            : LinearGradient(colors: [
+                const Color(0xFFF59E0B),
+                const Color(0xFFFBBF24),
+              ]),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: (completed ? const Color(0xFF10B981) : const Color(0xFFF59E0B))
+                .withValues(alpha: 0.2),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Icon(
+              completed ? Icons.check_circle : Icons.flag,
+              color: Colors.white,
+              size: 24,
+            ),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'ชาเลนจ์ประจำวัน',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  completed
+                      ? 'สำเร็จแล้ว！ +30 XP'
+                      : 'ทำแบบทดสอบวันนี้ 1 ครั้ง → +30 XP',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.white.withValues(alpha: 0.85),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

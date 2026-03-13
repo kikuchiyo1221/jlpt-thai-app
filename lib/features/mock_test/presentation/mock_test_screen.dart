@@ -3,7 +3,9 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/services/data_service.dart';
 import '../../../shared/services/progress_service.dart';
+import '../../../shared/widgets/combo_indicator.dart';
 import '../../../shared/widgets/furigana_text.dart';
+import '../../../shared/widgets/teacher_feedback_card.dart';
 
 class MockTestScreen extends StatefulWidget {
   const MockTestScreen({super.key});
@@ -30,6 +32,11 @@ class _MockTestScreenState extends State<MockTestScreen> {
   // Track used questions and incorrect concept groups across retries
   final Map<String, Set<String>> _usedQuestionIds = {};
   final Map<String, Set<String>> _incorrectGroups = {};
+
+  // Combo tracking
+  int _combo = 0;
+  int _maxCombo = 0;
+  int _comboBonus = 0;
 
   static const int _questionsPerTest = 5;
 
@@ -124,6 +131,9 @@ class _MockTestScreenState extends State<MockTestScreen> {
       _score = 0;
       _showResult = false;
       _userAnswers = List.filled(questions.length, null);
+      _combo = 0;
+      _maxCombo = 0;
+      _comboBonus = 0;
     });
   }
 
@@ -327,7 +337,23 @@ class _MockTestScreenState extends State<MockTestScreen> {
                 );
               }),
             ),
-            const SizedBox(height: 28),
+            const SizedBox(height: 12),
+
+            // Combo indicator
+            if (_combo >= 2)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Center(
+                  child: ComboIndicator(
+                    combo: _combo,
+                    bonusXp: _combo % AppConstants.comboThreshold == 0
+                        ? AppConstants.xpPerComboBonus
+                        : 0,
+                  ),
+                ),
+              ),
+
+            const SizedBox(height: 4),
 
             // Question Card
             Container(
@@ -473,7 +499,14 @@ class _MockTestScreenState extends State<MockTestScreen> {
     final isCorrect = _selectedAnswer == question['answer'];
     if (isCorrect) {
       _score++;
+      _combo++;
+      if (_combo > _maxCombo) _maxCombo = _combo;
+      // Combo bonus
+      if (_combo > 0 && _combo % AppConstants.comboThreshold == 0) {
+        _comboBonus += AppConstants.xpPerComboBonus;
+      }
     } else {
+      _combo = 0;
       // Track incorrect group for retry with variant
       final group = question['group'] as String;
       (_incorrectGroups[_selectedLevel] ??= {}).add(group);
@@ -487,8 +520,10 @@ class _MockTestScreenState extends State<MockTestScreen> {
     if (_currentQuestion >= _questions.length - 1) {
       // Record results
       await ProgressService.recordQuizResult(_score, _questions.length);
-      await ProgressService.addXp(_score * AppConstants.xpPerCorrectAnswer);
+      await ProgressService.addXp(_score * AppConstants.xpPerCorrectAnswer + _comboBonus);
       await ProgressService.updateStreak();
+      await ProgressService.updateBestCombo(_maxCombo);
+      await ProgressService.completeDailyChallenge();
     }
 
     setState(() {
@@ -563,7 +598,51 @@ class _MockTestScreenState extends State<MockTestScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+
+            // Teacher Feedback
+            TeacherFeedbackCard(percentage: percentage),
+
+            // Combo result
+            if (_maxCombo >= 2) ...[
+              const SizedBox(height: 12),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF59E0B).withValues(alpha: 0.08),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: const Color(0xFFF59E0B).withValues(alpha: 0.2)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.bolt, color: Color(0xFFF59E0B), size: 20),
+                    const SizedBox(width: 6),
+                    Text(
+                      'ベストコンボ: $_maxCombo',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFFF59E0B),
+                      ),
+                    ),
+                    if (_comboBonus > 0) ...[
+                      const SizedBox(width: 12),
+                      Text(
+                        '+$_comboBonus XP ボーナス',
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFFF59E0B),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+            const SizedBox(height: 20),
 
             // Review header
             Align(

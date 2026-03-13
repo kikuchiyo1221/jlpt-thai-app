@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/models/teacher_character.dart';
 import '../../../shared/services/progress_service.dart';
+import '../../../shared/widgets/teacher_selection_sheet.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,6 +15,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final teacher = ProgressService.hasSelectedTeacher
+        ? TeacherCharacter.getById(ProgressService.selectedTeacherId)
+        : null;
+
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -29,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Level & XP Card
+            // Level & XP Card with Title
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(24),
@@ -51,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Center(
                       child: Text(
                         'Lv.${ProgressService.level}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w800,
                           color: Colors.white,
@@ -59,7 +65,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
+                  // Player Title
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      '${ProgressService.playerTitle} (${ProgressService.playerTitleJp})',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
                   Text(
                     '${ProgressService.totalXp % ProgressService.xpToNextLevel} / ${ProgressService.xpToNextLevel} XP',
                     style: const TextStyle(
@@ -83,6 +106,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
 
+            // Teacher Card
+            if (teacher != null) _teacherCard(teacher),
+            if (teacher != null) const SizedBox(height: 20),
+
             // Stats
             Row(
               children: [
@@ -91,6 +118,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _statCard(Icons.menu_book, '${ProgressService.totalWordsLearned}', 'คำที่เรียน', AppTheme.primaryColor),
                 const SizedBox(width: 10),
                 _statCard(Icons.check_circle, '${(ProgressService.accuracy * 100).round()}%', 'ความแม่นยำ', AppTheme.accentColor),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                _statCard(Icons.bolt, '${ProgressService.bestCombo}', 'เบสท์คอมโบ', const Color(0xFFF59E0B)),
+                const SizedBox(width: 10),
+                _statCard(Icons.assignment_turned_in, '${ProgressService.totalTestsCompleted}', 'สอบแล้ว', const Color(0xFF3B82F6)),
+                const SizedBox(width: 10),
+                _statCard(Icons.star_rounded, '${ProgressService.totalXp}', 'รวม XP', const Color(0xFF8B5CF6)),
               ],
             ),
             const SizedBox(height: 28),
@@ -115,6 +152,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _badgeItem(Icons.verified, 'สอบผ่าน N5', ProgressService.totalAnswered >= 5 && ProgressService.accuracy >= 0.7, const Color(0xFF3B82F6)),
                 _badgeItem(Icons.local_fire_department, 'สตรีค 7 วัน', ProgressService.streak >= 7, const Color(0xFFFF6584)),
                 _badgeItem(Icons.stars, 'คะแนนเต็ม', ProgressService.totalAnswered >= 5 && ProgressService.accuracy >= 1.0, const Color(0xFF8B5CF6)),
+                _badgeItem(Icons.bolt, 'คอมโบ x5', ProgressService.bestCombo >= 5, const Color(0xFFE67E22)),
+                _badgeItem(Icons.flash_on, 'คอมโบ x10', ProgressService.bestCombo >= 10, const Color(0xFFE53935)),
+                _badgeItem(Icons.assignment_turned_in, 'นักสอบ', ProgressService.totalTestsCompleted >= 10, const Color(0xFF00BFA6)),
+                _badgeItem(Icons.calendar_month, 'ทำทุกวัน 30', ProgressService.streak >= 30, const Color(0xFF9C27B0)),
+                _badgeItem(Icons.school, 'เรียนครบ 100', ProgressService.totalWordsLearned >= 100, const Color(0xFF795548)),
               ],
             ),
             const SizedBox(height: 28),
@@ -134,6 +176,87 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _progressCard('N3', 0.0, AppTheme.n3Color),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _teacherCard(TeacherCharacter teacher) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: teacher.color.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: teacher.color.withValues(alpha: 0.2)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [teacher.color, teacher.color.withValues(alpha: 0.7)],
+              ),
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Text(
+                teacher.kanjiAvatar,
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  teacher.nameJp,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: teacher.color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  teacher.title,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: AppTheme.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () async {
+              await TeacherSelectionSheet.show(context);
+              if (mounted) setState(() {});
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
+                color: teacher.color.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                'เปลี่ยน',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: teacher.color,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
