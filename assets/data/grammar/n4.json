@@ -1,0 +1,527 @@
+[
+  {
+    "id": "n4_g001",
+    "pattern": "〜ようにする",
+    "meaning": "พยายามทำให้〜 (phayayam tham hai) - try to make it so that",
+    "meaning_th": "พยายามทำให้〜",
+    "meaning_ja": "〜するように努める",
+    "level": "N4",
+    "formation": "動詞辞書形 + ようにする / 動詞ない形 + ようにする",
+    "example": "毎日運動するようにしています。",
+    "translation": "ฉันพยายามออกกำลังกายทุกวัน (chan phayayam ok kamlang kai thuk wan)",
+    "examples": [
+      {"sentence": "毎日運動するようにしています。", "translation_th": "ฉันพยายามออกกำลังกายทุกวัน"},
+      {"sentence": "遅刻しないようにする。", "translation_th": "พยายามไม่ให้มาสาย"}
+    ]
+  },
+  {
+    "id": "n4_g002",
+    "pattern": "〜ようになる",
+    "meaning": "กลายเป็นว่า〜ได้ (klai pen wa dai) - come to be able to / it has become that",
+    "meaning_th": "กลายเป็นว่า〜ได้",
+    "meaning_ja": "〜できるようになる",
+    "level": "N4",
+    "formation": "動詞辞書形 + ようになる / 動詞ない形 + ようになる",
+    "example": "日本語が話せるようになりました。",
+    "translation": "พูดภาษาญี่ปุ่นได้แล้ว (phut phasa yipun dai laeo)",
+    "examples": [
+      {"sentence": "日本語が話せるようになりました。", "translation_th": "พูดภาษาญี่ปุ่นได้แล้ว"},
+      {"sentence": "漢字が読めるようになった。", "translation_th": "อ่านคันจิได้แล้ว"}
+    ]
+  },
+  {
+    "id": "n4_g003",
+    "pattern": "〜ことにする",
+    "meaning": "ตัดสินใจที่จะ〜 (tat sin jai thi ja) - decide to",
+    "meaning_th": "ตัดสินใจที่จะ〜",
+    "meaning_ja": "〜することに決める",
+    "level": "N4",
+    "formation": "動詞辞書形 / ない形 + ことにする",
+    "example": "来月から日本語を勉強することにしました。",
+    "translation": "ตัดสินใจเรียนภาษาญี่ปุ่นตั้งแต่เดือนหน้า (tat sin jai rian phasa yipun tang tae duean na)",
+    "examples": [
+      {"sentence": "来月から日本語を勉強することにしました。", "translation_th": "ตัดสินใจเรียนภาษาญี่ปุ่นตั้งแต่เดือนหน้า"},
+      {"sentence": "甘いものを食べないことにした。", "translation_th": "ตัดสินใจไม่กินของหวาน"}
+    ]
+  },
+  {
+    "id": "n4_g004",
+    "pattern": "〜ことになる",
+    "meaning": "กลายเป็นว่า〜 / ถูกกำหนดว่า〜 (klai pen wa / thuk kamhot wa) - it has been decided that",
+    "meaning_th": "กลายเป็นว่า〜 / ถูกกำหนดว่า〜",
+    "meaning_ja": "〜することになる（決定される）",
+    "level": "N4",
+    "formation": "動詞辞書形 + ことになる",
+    "example": "来年、日本に転勤することになりました。",
+    "translation": "ปีหน้าถูกย้ายไปทำงานที่ญี่ปุ่น (pi na thuk yai pai tham ngan thi yipun)",
+    "examples": [
+      {"sentence": "来年、日本に転勤することになりました。", "translation_th": "ปีหน้าถูกย้ายไปทำงานที่ญี่ปุ่น"},
+      {"sentence": "会議は来週行うことになった。", "translation_th": "ถูกกำหนดว่าจะประชุมสัปดาห์หน้า"}
+    ]
+  },
+  {
+    "id": "n4_g005",
+    "pattern": "〜そうだ（様態）",
+    "meaning": "ดูเหมือนว่า〜 (du muean wa) - looks like / appears to be",
+    "meaning_th": "ดูเหมือนว่า〜",
+    "meaning_ja": "〜のように見える",
+    "level": "N4",
+    "formation": "い形容詞語幹 / な形容詞語幹 / 動詞ます形 + そうだ",
+    "example": "このケーキはおいしそうだ。",
+    "translation": "เค้กนี้ดูเหมือนว่าอร่อย (khek ni du muean wa aroi)",
+    "examples": [
+      {"sentence": "このケーキはおいしそうだ。", "translation_th": "เค้กนี้ดูน่าอร่อย"},
+      {"sentence": "雨が降りそうだ。", "translation_th": "ดูเหมือนฝนจะตก"}
+    ]
+  },
+  {
+    "id": "n4_g006",
+    "pattern": "〜そうだ（伝聞）",
+    "meaning": "ได้ยินมาว่า〜 (dai yin ma wa) - I heard that",
+    "meaning_th": "ได้ยินมาว่า〜",
+    "meaning_ja": "〜と聞いた",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞だ / 名詞だ + そうだ",
+    "example": "明日は雨だそうだ。",
+    "translation": "ได้ยินมาว่าพรุ่งนี้ฝนตก (dai yin ma wa phrung ni fon tok)",
+    "examples": [
+      {"sentence": "明日は雨だそうだ。", "translation_th": "ได้ยินมาว่าพรุ่งนี้ฝนตก"},
+      {"sentence": "あの映画はおもしろいそうだ。", "translation_th": "ได้ยินมาว่าหนังเรื่องนั้นสนุก"}
+    ]
+  },
+  {
+    "id": "n4_g007",
+    "pattern": "〜らしい",
+    "meaning": "ดูเหมือนว่า〜 / น่าจะ〜 (du muean wa / na ja) - it seems like / apparently",
+    "meaning_th": "ดูเหมือนว่า〜 / น่าจะ〜",
+    "meaning_ja": "〜のようだ（推量）",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞 / 名詞 + らしい",
+    "example": "田中さんは来ないらしい。",
+    "translation": "ดูเหมือนว่าคุณทานากะจะไม่มา (du muean wa khun thanaka ja mai ma)",
+    "examples": [
+      {"sentence": "田中さんは来ないらしい。", "translation_th": "ดูเหมือนว่าคุณทานากะจะไม่มา"},
+      {"sentence": "あの店は安いらしい。", "translation_th": "ดูเหมือนว่าร้านนั้นถูก"}
+    ]
+  },
+  {
+    "id": "n4_g008",
+    "pattern": "〜みたいだ",
+    "meaning": "ดูเหมือน〜 / เหมือนกับ〜 (du muean / muean kap) - looks like / seems like",
+    "meaning_th": "ดูเหมือน〜 / เหมือนกับ〜",
+    "meaning_ja": "〜のようだ（口語的）",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞 / 名詞 + みたいだ",
+    "example": "彼は怒っているみたいだ。",
+    "translation": "ดูเหมือนว่าเขาโกรธอยู่ (du muean wa khao krot yu)",
+    "examples": [
+      {"sentence": "彼は怒っているみたいだ。", "translation_th": "ดูเหมือนว่าเขาโกรธอยู่"},
+      {"sentence": "この料理は辛いみたいだ。", "translation_th": "ดูเหมือนว่าอาหารจานนี้เผ็ด"}
+    ]
+  },
+  {
+    "id": "n4_g009",
+    "pattern": "〜はずだ",
+    "meaning": "น่าจะ〜 / ควรจะ〜 (na ja / khuan ja) - should be / is expected to",
+    "meaning_th": "น่าจะ〜 / ควรจะ〜",
+    "meaning_ja": "〜のはずだ（当然そうだ）",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞な / 名詞の + はずだ",
+    "example": "彼はもう来るはずだ。",
+    "translation": "เขาน่าจะมาแล้ว (khao na ja ma laeo)",
+    "examples": [
+      {"sentence": "彼はもう来るはずだ。", "translation_th": "เขาน่าจะมาแล้ว"},
+      {"sentence": "このレストランは安いはずだ。", "translation_th": "ร้านอาหารนี้น่าจะถูก"}
+    ]
+  },
+  {
+    "id": "n4_g010",
+    "pattern": "〜かもしれない",
+    "meaning": "อาจจะ〜 (at ja) - might / maybe",
+    "meaning_th": "อาจจะ〜",
+    "meaning_ja": "〜かもしれない（可能性がある）",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞 / 名詞 + かもしれない",
+    "example": "明日は雨が降るかもしれない。",
+    "translation": "พรุ่งนี้อาจจะมีฝนตก (phrung ni at ja mi fon tok)",
+    "examples": [
+      {"sentence": "明日は雨が降るかもしれない。", "translation_th": "พรุ่งนี้อาจจะมีฝนตก"},
+      {"sentence": "彼は知らないかもしれない。", "translation_th": "เขาอาจจะไม่รู้"}
+    ]
+  },
+  {
+    "id": "n4_g011",
+    "pattern": "受身形（〜られる）",
+    "meaning": "ถูก〜 (thuk) - passive form",
+    "meaning_th": "ถูก〜",
+    "meaning_ja": "〜される（受身）",
+    "level": "N4",
+    "formation": "一段動詞: 語幹 + られる / 五段動詞: あ段 + れる / する→される / 来る→来られる",
+    "example": "電車の中で足を踏まれた。",
+    "translation": "ถูกเหยียบเท้าบนรถไฟ (thuk yiap thao bon rot fai)",
+    "examples": [
+      {"sentence": "電車の中で足を踏まれた。", "translation_th": "ถูกเหยียบเท้าบนรถไฟ"},
+      {"sentence": "先生に褒められた。", "translation_th": "ถูกครูชม"}
+    ]
+  },
+  {
+    "id": "n4_g012",
+    "pattern": "使役形（〜させる）",
+    "meaning": "ให้〜ทำ / บังคับให้〜 (hai tham / bang khap hai) - causative form / make someone do",
+    "meaning_th": "ให้〜ทำ / บังคับให้〜",
+    "meaning_ja": "〜させる（使役）",
+    "level": "N4",
+    "formation": "一段動詞: 語幹 + させる / 五段動詞: あ段 + せる / する→させる / 来る→来させる",
+    "example": "母は弟に部屋を掃除させた。",
+    "translation": "แม่ให้น้องชายทำความสะอาดห้อง (mae hai nong chai tham khwam sa-at hong)",
+    "examples": [
+      {"sentence": "母は弟に部屋を掃除させた。", "translation_th": "แม่ให้น้องชายทำความสะอาดห้อง"},
+      {"sentence": "先生は学生にレポートを書かせた。", "translation_th": "ครูให้นักเรียนเขียนรายงาน"}
+    ]
+  },
+  {
+    "id": "n4_g013",
+    "pattern": "〜させてください",
+    "meaning": "กรุณาให้ฉัน〜 (karuna hai chan) - please let me do",
+    "meaning_th": "กรุณาให้ฉัน〜",
+    "meaning_ja": "〜させてください（許可を求める）",
+    "level": "N4",
+    "formation": "動詞使役形て形 + ください",
+    "example": "私にやらせてください。",
+    "translation": "กรุณาให้ฉันทำเถอะ (karuna hai chan tham thoe)",
+    "examples": [
+      {"sentence": "私にやらせてください。", "translation_th": "กรุณาให้ฉันทำเถอะ"},
+      {"sentence": "少し考えさせてください。", "translation_th": "กรุณาให้ฉันคิดสักหน่อย"}
+    ]
+  },
+  {
+    "id": "n4_g014",
+    "pattern": "〜てあげる",
+    "meaning": "ทำ〜ให้ (tham hai) - do something for someone (giving)",
+    "meaning_th": "ทำ〜ให้ (ผู้พูดทำให้คนอื่น)",
+    "meaning_ja": "〜してあげる（恩恵を与える）",
+    "level": "N4",
+    "formation": "動詞て形 + あげる",
+    "example": "友達に日本語を教えてあげた。",
+    "translation": "สอนภาษาญี่ปุ่นให้เพื่อน (son phasa yipun hai phuean)",
+    "examples": [
+      {"sentence": "友達に日本語を教えてあげた。", "translation_th": "สอนภาษาญี่ปุ่นให้เพื่อน"},
+      {"sentence": "妹に本を読んであげた。", "translation_th": "อ่านหนังสือให้น้องสาว"}
+    ]
+  },
+  {
+    "id": "n4_g015",
+    "pattern": "〜てもらう",
+    "meaning": "ได้รับการ〜 (dai rap kan) - receive the favor of someone doing",
+    "meaning_th": "ได้รับการ〜 (ได้คนอื่นทำให้)",
+    "meaning_ja": "〜してもらう（恩恵を受ける）",
+    "level": "N4",
+    "formation": "動詞て形 + もらう",
+    "example": "友達に手伝ってもらった。",
+    "translation": "ได้เพื่อนช่วย (dai phuean chuai)",
+    "examples": [
+      {"sentence": "友達に手伝ってもらった。", "translation_th": "ได้เพื่อนช่วย"},
+      {"sentence": "先生に説明してもらった。", "translation_th": "ได้ครูอธิบายให้"}
+    ]
+  },
+  {
+    "id": "n4_g016",
+    "pattern": "〜てくれる",
+    "meaning": "〜ทำให้ (tham hai) - someone does something for me (receiving)",
+    "meaning_th": "〜ทำให้ (คนอื่นทำให้ผู้พูด)",
+    "meaning_ja": "〜してくれる（恩恵をもらう）",
+    "level": "N4",
+    "formation": "動詞て形 + くれる",
+    "example": "母が弁当を作ってくれた。",
+    "translation": "แม่ทำข้าวกล่องให้ (mae tham khao klong hai)",
+    "examples": [
+      {"sentence": "母が弁当を作ってくれた。", "translation_th": "แม่ทำข้าวกล่องให้"},
+      {"sentence": "彼が駅まで送ってくれた。", "translation_th": "เขาไปส่งให้ถึงสถานี"}
+    ]
+  },
+  {
+    "id": "n4_g017",
+    "pattern": "〜ば",
+    "meaning": "ถ้า〜 (tha) - if (conditional)",
+    "meaning_th": "ถ้า〜",
+    "meaning_ja": "〜すれば（条件）",
+    "level": "N4",
+    "formation": "動詞ば形: 五段→え段+ば / 一段→れば / い形→ければ / な形→なら（ば）",
+    "example": "安ければ買います。",
+    "translation": "ถ้าถูกก็จะซื้อ (tha thuk ko ja sue)",
+    "examples": [
+      {"sentence": "安ければ買います。", "translation_th": "ถ้าถูกก็จะซื้อ"},
+      {"sentence": "時間があれば行きます。", "translation_th": "ถ้ามีเวลาก็จะไป"}
+    ]
+  },
+  {
+    "id": "n4_g018",
+    "pattern": "〜たら",
+    "meaning": "ถ้า〜แล้ว / เมื่อ〜แล้ว (tha laeo / muea laeo) - if / when (conditional)",
+    "meaning_th": "ถ้า〜แล้ว / เมื่อ〜แล้ว",
+    "meaning_ja": "〜したら（条件・完了後）",
+    "level": "N4",
+    "formation": "動詞た形 + ら / い形→かったら / な形→だったら / 名詞→だったら",
+    "example": "雨が降ったら、家にいます。",
+    "translation": "ถ้าฝนตกก็จะอยู่บ้าน (tha fon tok ko ja yu ban)",
+    "examples": [
+      {"sentence": "雨が降ったら、家にいます。", "translation_th": "ถ้าฝนตกก็จะอยู่บ้าน"},
+      {"sentence": "日本に着いたら、電話してください。", "translation_th": "เมื่อถึงญี่ปุ่นแล้วกรุณาโทรมา"}
+    ]
+  },
+  {
+    "id": "n4_g019",
+    "pattern": "〜なら",
+    "meaning": "ถ้าพูดถึง〜 / ถ้าเป็น〜 (tha phut thueng / tha pen) - if it is the case that / speaking of",
+    "meaning_th": "ถ้าพูดถึง〜 / ถ้าเป็น〜",
+    "meaning_ja": "〜なら（話題の条件）",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞 / 名詞 + なら",
+    "example": "日本語を勉強するなら、この本がいいですよ。",
+    "translation": "ถ้าจะเรียนภาษาญี่ปุ่น หนังสือเล่มนี้ดีนะ (tha ja rian phasa yipun nangsue lem ni di na)",
+    "examples": [
+      {"sentence": "日本語を勉強するなら、この本がいいですよ。", "translation_th": "ถ้าจะเรียนภาษาญี่ปุ่น หนังสือเล่มนี้ดีนะ"},
+      {"sentence": "安いなら買います。", "translation_th": "ถ้าถูกก็จะซื้อ"}
+    ]
+  },
+  {
+    "id": "n4_g020",
+    "pattern": "〜のに",
+    "meaning": "ทั้งๆ ที่〜 (thang thang thi) - despite / even though",
+    "meaning_th": "ทั้งๆ ที่〜",
+    "meaning_ja": "〜のに（逆接）",
+    "level": "N4",
+    "formation": "動詞普通形 / い形容詞 / な形容詞な / 名詞な + のに",
+    "example": "約束したのに、来なかった。",
+    "translation": "ทั้งๆ ที่สัญญาแล้วแต่ไม่มา (thang thang thi sanya laeo tae mai ma)",
+    "examples": [
+      {"sentence": "約束したのに、来なかった。", "translation_th": "ทั้งๆ ที่สัญญาแล้วแต่ไม่มา"},
+      {"sentence": "薬を飲んだのに、まだ熱がある。", "translation_th": "ทั้งๆ ที่กินยาแล้วแต่ยังมีไข้อยู่"}
+    ]
+  },
+  {
+    "id": "n4_g021",
+    "pattern": "〜ために",
+    "meaning": "เพื่อที่จะ〜 (phuea thi ja) - in order to / for the purpose of",
+    "meaning_th": "เพื่อที่จะ〜",
+    "meaning_ja": "〜するために（目的）",
+    "level": "N4",
+    "formation": "動詞辞書形 / 名詞の + ために",
+    "example": "日本に留学するために、お金を貯めています。",
+    "translation": "เพื่อไปเรียนต่อที่ญี่ปุ่น กำลังเก็บเงินอยู่ (phuea pai rian to thi yipun kamlang kep ngoen yu)",
+    "examples": [
+      {"sentence": "日本に留学するために、お金を貯めています。", "translation_th": "เพื่อไปเรียนต่อที่ญี่ปุ่น กำลังเก็บเงินอยู่"},
+      {"sentence": "健康のために、毎日走っています。", "translation_th": "เพื่อสุขภาพ วิ่งทุกวัน"}
+    ]
+  },
+  {
+    "id": "n4_g022",
+    "pattern": "〜ように",
+    "meaning": "เพื่อให้〜 (phuea hai) - so that / in such a way that",
+    "meaning_th": "เพื่อให้〜",
+    "meaning_ja": "〜するように（目的・希望）",
+    "level": "N4",
+    "formation": "動詞辞書形 / 動詞ない形 + ように",
+    "example": "忘れないように、メモを書いた。",
+    "translation": "เพื่อไม่ให้ลืม จึงเขียนจดไว้ (phuea mai hai luem jueng khian jot wai)",
+    "examples": [
+      {"sentence": "忘れないように、メモを書いた。", "translation_th": "เพื่อไม่ให้ลืม จึงเขียนจดไว้"},
+      {"sentence": "聞こえるように、大きい声で話した。", "translation_th": "พูดเสียงดังเพื่อให้ได้ยิน"}
+    ]
+  },
+  {
+    "id": "n4_g023",
+    "pattern": "〜てしまう",
+    "meaning": "ทำ〜จนหมด / ทำ〜ไปแล้ว (อย่างเสียดาย) (tham jon mot / tham pai laeo) - end up doing / regrettably done",
+    "meaning_th": "ทำ〜จนหมด / ทำ〜ไปแล้ว (อย่างเสียดาย)",
+    "meaning_ja": "〜してしまう（完了・後悔）",
+    "level": "N4",
+    "formation": "動詞て形 + しまう（口語: 〜ちゃう / 〜じゃう）",
+    "example": "財布をなくしてしまった。",
+    "translation": "ทำกระเป๋าสตางค์หายไปแล้ว (tham krapao satang hai pai laeo)",
+    "examples": [
+      {"sentence": "財布をなくしてしまった。", "translation_th": "ทำกระเป๋าสตางค์หายไปแล้ว"},
+      {"sentence": "ケーキを全部食べてしまった。", "translation_th": "กินเค้กหมดเลย"}
+    ]
+  },
+  {
+    "id": "n4_g024",
+    "pattern": "〜ておく",
+    "meaning": "ทำ〜ไว้ล่วงหน้า (tham wai luang na) - do something in advance / leave something as is",
+    "meaning_th": "ทำ〜ไว้ล่วงหน้า",
+    "meaning_ja": "〜しておく（準備・放置）",
+    "level": "N4",
+    "formation": "動詞て形 + おく（口語: 〜とく）",
+    "example": "旅行の前にホテルを予約しておいた。",
+    "translation": "จองโรงแรมไว้ก่อนเดินทาง (jong rong raem wai kon doen thang)",
+    "examples": [
+      {"sentence": "旅行の前にホテルを予約しておいた。", "translation_th": "จองโรงแรมไว้ก่อนเดินทาง"},
+      {"sentence": "窓を開けておいてください。", "translation_th": "กรุณาเปิดหน้าต่างทิ้งไว้"}
+    ]
+  },
+  {
+    "id": "n4_g025",
+    "pattern": "〜てみる",
+    "meaning": "ลอง〜ดู (long du) - try doing",
+    "meaning_th": "ลอง〜ดู",
+    "meaning_ja": "〜してみる（試す）",
+    "level": "N4",
+    "formation": "動詞て形 + みる",
+    "example": "この料理を食べてみてください。",
+    "translation": "กรุณาลองกินอาหารจานนี้ดู (karuna long kin ahan jan ni du)",
+    "examples": [
+      {"sentence": "この料理を食べてみてください。", "translation_th": "กรุณาลองกินอาหารจานนี้ดู"},
+      {"sentence": "日本語で話してみた。", "translation_th": "ลองพูดเป็นภาษาญี่ปุ่นดู"}
+    ]
+  },
+  {
+    "id": "n4_g026",
+    "pattern": "〜たばかり",
+    "meaning": "เพิ่ง〜ไป (phoeng pai) - just did",
+    "meaning_th": "เพิ่ง〜ไป",
+    "meaning_ja": "〜したばかり（直後）",
+    "level": "N4",
+    "formation": "動詞た形 + ばかり",
+    "example": "日本に来たばかりです。",
+    "translation": "เพิ่งมาญี่ปุ่น (phoeng ma yipun)",
+    "examples": [
+      {"sentence": "日本に来たばかりです。", "translation_th": "เพิ่งมาญี่ปุ่น"},
+      {"sentence": "昼ご飯を食べたばかりだから、お腹がいっぱいだ。", "translation_th": "เพราะเพิ่งกินข้าวเที่ยง ก็เลยอิ่ม"}
+    ]
+  },
+  {
+    "id": "n4_g027",
+    "pattern": "〜ところだ",
+    "meaning": "กำลังจะ〜 / กำลัง〜อยู่ / เพิ่ง〜 (kamlang ja / kamlang yu / phoeng) - about to / in the middle of / just finished",
+    "meaning_th": "กำลังจะ〜 / กำลัง〜อยู่ / เพิ่ง〜",
+    "meaning_ja": "〜するところだ（時点）",
+    "level": "N4",
+    "formation": "動詞辞書形 + ところだ（前）/ 動詞ている + ところだ（中）/ 動詞た形 + ところだ（後）",
+    "example": "今から出かけるところです。",
+    "translation": "กำลังจะออกไปตอนนี้ (kamlang ja ok pai ton ni)",
+    "examples": [
+      {"sentence": "今から出かけるところです。", "translation_th": "กำลังจะออกไปตอนนี้"},
+      {"sentence": "ちょうど食べたところです。", "translation_th": "เพิ่งกินเสร็จพอดี"}
+    ]
+  },
+  {
+    "id": "n4_g028",
+    "pattern": "〜ても",
+    "meaning": "แม้ว่า〜ก็ (mae wa ko) - even if / even though",
+    "meaning_th": "แม้ว่า〜ก็",
+    "meaning_ja": "〜しても（逆接仮定）",
+    "level": "N4",
+    "formation": "動詞て形 + も / い形→くても / な形→でも / 名詞→でも",
+    "example": "雨が降っても、サッカーをします。",
+    "translation": "แม้ว่าฝนตกก็จะเล่นฟุตบอล (mae wa fon tok ko ja len futbon)",
+    "examples": [
+      {"sentence": "雨が降っても、サッカーをします。", "translation_th": "แม้ว่าฝนตกก็จะเล่นฟุตบอล"},
+      {"sentence": "高くても買います。", "translation_th": "แม้ว่าแพงก็จะซื้อ"}
+    ]
+  },
+  {
+    "id": "n4_g029",
+    "pattern": "〜し〜し",
+    "meaning": "ทั้ง〜ทั้ง〜 / แล้วก็〜ด้วย (thang thang / laeo ko duai) - and also / moreover",
+    "meaning_th": "ทั้ง〜ทั้ง〜 / แล้วก็〜ด้วย",
+    "meaning_ja": "〜し〜し（理由の列挙）",
+    "level": "N4",
+    "formation": "文1（普通形）+ し、文2（普通形）+ し",
+    "example": "この部屋は広いし、きれいだし、いいですね。",
+    "translation": "ห้องนี้ทั้งกว้างทั้งสะอาด ดีจังเลย (hong ni thang kwang thang sa-at di jang loei)",
+    "examples": [
+      {"sentence": "この部屋は広いし、きれいだし、いいですね。", "translation_th": "ห้องนี้ทั้งกว้างทั้งสะอาด ดีจังเลย"},
+      {"sentence": "頭も痛いし、熱もあるし、会社を休みます。", "translation_th": "ทั้งปวดหัวทั้งมีไข้ จะหยุดงาน"}
+    ]
+  },
+  {
+    "id": "n4_g030",
+    "pattern": "〜とか〜とか",
+    "meaning": "เช่น〜และ〜 / อย่างเช่น〜 (chen lae / yang chen) - things like / such as",
+    "meaning_th": "เช่น〜และ〜 / อย่างเช่น〜",
+    "meaning_ja": "〜とか〜とか（例示）",
+    "level": "N4",
+    "formation": "名詞 + とか + 名詞 + とか / 動詞普通形 + とか",
+    "example": "休みの日はテニスとか水泳とかをします。",
+    "translation": "วันหยุดก็ทำอะไรเช่นเทนนิสและว่ายน้ำ (wan yut ko tham arai chen thennit lae wai nam)",
+    "examples": [
+      {"sentence": "休みの日はテニスとか水泳とかをします。", "translation_th": "วันหยุดก็ทำอะไรเช่นเทนนิสและว่ายน้ำ"},
+      {"sentence": "果物とかお菓子とかを買った。", "translation_th": "ซื้อพวกผลไม้และขนมเป็นต้น"}
+    ]
+  },
+  {
+    "id": "n4_g031",
+    "pattern": "〜間 / 〜間に",
+    "meaning": "ระหว่างที่〜 (rawang thi) - during / while",
+    "meaning_th": "ระหว่างที่〜",
+    "meaning_ja": "〜している間（に）",
+    "level": "N4",
+    "formation": "動詞ている + 間（に）/ 名詞の + 間（に）",
+    "example": "母が寝ている間に、掃除をした。",
+    "translation": "ระหว่างที่แม่นอนหลับ ก็ทำความสะอาด (rawang thi mae non lap ko tham khwam sa-at)",
+    "examples": [
+      {"sentence": "母が寝ている間に、掃除をした。", "translation_th": "ระหว่างที่แม่นอนหลับ ก็ทำความสะอาด"},
+      {"sentence": "夏休みの間、アルバイトをした。", "translation_th": "ระหว่างปิดเทอมฤดูร้อน ทำงานพาร์ทไทม์"}
+    ]
+  },
+  {
+    "id": "n4_g032",
+    "pattern": "命令形",
+    "meaning": "〜ซะ! / 〜เลย! (sa / loei) - imperative / command form",
+    "meaning_th": "〜ซะ! / 〜เลย! (คำสั่ง)",
+    "meaning_ja": "〜しろ / 〜しなさい（命令）",
+    "level": "N4",
+    "formation": "五段動詞: え段 / 一段動詞: 語幹 + ろ / する→しろ / 来る→来い",
+    "example": "早く起きろ！",
+    "translation": "ตื่นเร็วเข้า! (tuen reo khao)",
+    "examples": [
+      {"sentence": "早く起きろ！", "translation_th": "ตื่นเร็วเข้า!"},
+      {"sentence": "静かにしろ！", "translation_th": "เงียบซะ!"}
+    ]
+  },
+  {
+    "id": "n4_g033",
+    "pattern": "〜させられる（使役受身）",
+    "meaning": "ถูกบังคับให้〜 (thuk bang khap hai) - be made to do / causative passive",
+    "meaning_th": "ถูกบังคับให้〜",
+    "meaning_ja": "〜させられる（使役受身）",
+    "level": "N4",
+    "formation": "一段動詞: 語幹 + させられる / 五段動詞: あ段 + せられる（短縮: あ段 + される）",
+    "example": "子供の時、野菜を食べさせられた。",
+    "translation": "ตอนเด็กถูกบังคับให้กินผัก (ton dek thuk bang khap hai kin phak)",
+    "examples": [
+      {"sentence": "子供の時、野菜を食べさせられた。", "translation_th": "ตอนเด็กถูกบังคับให้กินผัก"},
+      {"sentence": "毎日残業させられている。", "translation_th": "ถูกบังคับให้ทำงานล่วงเวลาทุกวัน"}
+    ]
+  },
+  {
+    "id": "n4_g034",
+    "pattern": "〜ずに",
+    "meaning": "โดยไม่ได้〜 (doi mai dai) - without doing",
+    "meaning_th": "โดยไม่ได้〜",
+    "meaning_ja": "〜しないで（〜せずに）",
+    "level": "N4",
+    "formation": "動詞ない形（ない→ずに）/ する→せずに",
+    "example": "朝ご飯を食べずに学校に行った。",
+    "translation": "ไปโรงเรียนโดยไม่ได้กินข้าวเช้า (pai rong rian doi mai dai kin khao chao)",
+    "examples": [
+      {"sentence": "朝ご飯を食べずに学校に行った。", "translation_th": "ไปโรงเรียนโดยไม่ได้กินข้าวเช้า"},
+      {"sentence": "辞書を使わずに読めた。", "translation_th": "อ่านได้โดยไม่ใช้พจนานุกรม"}
+    ]
+  },
+  {
+    "id": "n4_g035",
+    "pattern": "〜ていただけませんか",
+    "meaning": "ได้โปรดช่วย〜ได้ไหมครับ/ค่ะ (dai prot chuai dai mai) - could you please (polite request)",
+    "meaning_th": "ได้โปรดช่วย〜ได้ไหมครับ/ค่ะ",
+    "meaning_ja": "〜していただけませんか（丁寧な依頼）",
+    "level": "N4",
+    "formation": "動詞て形 + いただけませんか",
+    "example": "もう少しゆっくり話していただけませんか。",
+    "translation": "ได้โปรดช่วยพูดช้าลงอีกหน่อยได้ไหมครับ (dai prot chuai phut cha long ik noi dai mai khrap)",
+    "examples": [
+      {"sentence": "もう少しゆっくり話していただけませんか。", "translation_th": "ได้โปรดช่วยพูดช้าลงอีกหน่อยได้ไหมครับ"},
+      {"sentence": "写真を撮っていただけませんか。", "translation_th": "ได้โปรดช่วยถ่ายรูปให้ได้ไหมครับ"}
+    ]
+  }
+]

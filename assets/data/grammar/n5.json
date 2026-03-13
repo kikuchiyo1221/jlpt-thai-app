@@ -1,0 +1,467 @@
+[
+  {
+    "id": "n5_g001",
+    "pattern": "〜は〜です",
+    "meaning": "〜คือ〜 (khue) - is/am/are",
+    "meaning_th": "〜คือ〜",
+    "meaning_ja": "〜は〜です",
+    "level": "N5",
+    "formation": "名詞 + は + 名詞 + です",
+    "example": "私は学生です。",
+    "translation": "ฉันเป็นนักเรียน (chan pen nak rian)",
+    "examples": [
+      {"sentence": "私は学生です。", "translation_th": "ฉันเป็นนักเรียน"},
+      {"sentence": "これは本です。", "translation_th": "นี่คือหนังสือ"}
+    ]
+  },
+  {
+    "id": "n5_g002",
+    "pattern": "〜じゃないです / 〜ではありません",
+    "meaning": "ไม่ใช่〜 (mai chai) - is not",
+    "meaning_th": "ไม่ใช่〜",
+    "meaning_ja": "〜ではない",
+    "level": "N5",
+    "formation": "名詞 + じゃないです / ではありません",
+    "example": "私は先生じゃないです。",
+    "translation": "ฉันไม่ใช่ครู (chan mai chai khru)",
+    "examples": [
+      {"sentence": "私は先生じゃないです。", "translation_th": "ฉันไม่ใช่ครู"},
+      {"sentence": "これはペンではありません。", "translation_th": "นี่ไม่ใช่ปากกา"}
+    ]
+  },
+  {
+    "id": "n5_g003",
+    "pattern": "〜ですか",
+    "meaning": "〜ใช่ไหม / 〜หรือ (chai mai / rue) - question marker",
+    "meaning_th": "〜ใช่ไหม / 〜หรือ",
+    "meaning_ja": "〜ですか（疑問）",
+    "level": "N5",
+    "formation": "文 + か",
+    "example": "これは何ですか。",
+    "translation": "นี่คืออะไร (ni khue arai)",
+    "examples": [
+      {"sentence": "これは何ですか。", "translation_th": "นี่คืออะไร"},
+      {"sentence": "田中さんは日本人ですか。", "translation_th": "คุณทานากะเป็นคนญี่ปุ่นใช่ไหม"}
+    ]
+  },
+  {
+    "id": "n5_g004",
+    "pattern": "〜の〜",
+    "meaning": "〜ของ〜 (khong) - possession/modification",
+    "meaning_th": "〜ของ〜",
+    "meaning_ja": "〜の〜（所有・修飾）",
+    "level": "N5",
+    "formation": "名詞 + の + 名詞",
+    "example": "私の本です。",
+    "translation": "เป็นหนังสือของฉัน (pen nang sue khong chan)",
+    "examples": [
+      {"sentence": "私の本です。", "translation_th": "เป็นหนังสือของฉัน"},
+      {"sentence": "日本語の先生です。", "translation_th": "เป็นครูภาษาญี่ปุ่น"}
+    ]
+  },
+  {
+    "id": "n5_g005",
+    "pattern": "〜を〜",
+    "meaning": "ทำ〜 (tham) - object marker",
+    "meaning_th": "ตัวบ่งชี้กรรม",
+    "meaning_ja": "〜を（目的語）",
+    "level": "N5",
+    "formation": "名詞 + を + 動詞",
+    "example": "ご飯を食べます。",
+    "translation": "กินข้าว (kin khao)",
+    "examples": [
+      {"sentence": "ご飯を食べます。", "translation_th": "กินข้าว"},
+      {"sentence": "水を飲みます。", "translation_th": "ดื่มน้ำ"}
+    ]
+  },
+  {
+    "id": "n5_g006",
+    "pattern": "〜に / 〜へ",
+    "meaning": "ไปที่〜 / ไปยัง〜 (pai thi / pai yang) - direction/destination",
+    "meaning_th": "ไปที่〜 / ไปยัง〜",
+    "meaning_ja": "〜に / 〜へ（方向・目的地）",
+    "level": "N5",
+    "formation": "場所 + に/へ + 移動動詞",
+    "example": "学校に行きます。",
+    "translation": "ไปโรงเรียน (pai rong rian)",
+    "examples": [
+      {"sentence": "学校に行きます。", "translation_th": "ไปโรงเรียน"},
+      {"sentence": "日本へ行きたいです。", "translation_th": "อยากไปญี่ปุ่น"}
+    ]
+  },
+  {
+    "id": "n5_g007",
+    "pattern": "〜で",
+    "meaning": "ที่〜 / ด้วย〜 (thi / duai) - location of action / means",
+    "meaning_th": "ที่〜 / ด้วย〜",
+    "meaning_ja": "〜で（場所・手段）",
+    "level": "N5",
+    "formation": "場所/手段 + で + 動詞",
+    "example": "図書館で勉強します。",
+    "translation": "เรียนที่ห้องสมุด (rian thi hong samut)",
+    "examples": [
+      {"sentence": "図書館で勉強します。", "translation_th": "เรียนที่ห้องสมุด"},
+      {"sentence": "バスで行きます。", "translation_th": "ไปด้วยรถบัส"}
+    ]
+  },
+  {
+    "id": "n5_g008",
+    "pattern": "〜から〜まで",
+    "meaning": "จาก〜ถึง〜 (chak...thueng) - from...to",
+    "meaning_th": "จาก〜ถึง〜",
+    "meaning_ja": "〜から〜まで",
+    "level": "N5",
+    "formation": "名詞 + から + 名詞 + まで",
+    "example": "9時から5時まで働きます。",
+    "translation": "ทำงานตั้งแต่ 9 โมงถึง 5 โมง (tham ngan tang tae kao mong thueng ha mong)",
+    "examples": [
+      {"sentence": "9時から5時まで働きます。", "translation_th": "ทำงานตั้งแต่ 9 โมงถึง 5 โมง"},
+      {"sentence": "東京から大阪まで新幹線で行きます。", "translation_th": "ไปจากโตเกียวถึงโอซาก้าด้วยรถไฟชินคันเซ็น"}
+    ]
+  },
+  {
+    "id": "n5_g009",
+    "pattern": "〜も",
+    "meaning": "〜ด้วย / 〜ก็ (duai / ko) - also/too",
+    "meaning_th": "〜ด้วย / 〜ก็",
+    "meaning_ja": "〜も（同様）",
+    "level": "N5",
+    "formation": "名詞 + も",
+    "example": "私も学生です。",
+    "translation": "ฉันก็เป็นนักเรียนเหมือนกัน (chan ko pen nak rian muean kan)",
+    "examples": [
+      {"sentence": "私も学生です。", "translation_th": "ฉันก็เป็นนักเรียนเหมือนกัน"},
+      {"sentence": "田中さんもタイ語を勉強しています。", "translation_th": "คุณทานากะก็เรียนภาษาไทยเหมือนกัน"}
+    ]
+  },
+  {
+    "id": "n5_g010",
+    "pattern": "〜と",
+    "meaning": "กับ〜 / และ〜 (kap / lae) - and/with",
+    "meaning_th": "กับ〜 / และ〜",
+    "meaning_ja": "〜と（並列・同伴）",
+    "level": "N5",
+    "formation": "名詞 + と + 名詞 / 人 + と + 動詞",
+    "example": "友達と映画を見ます。",
+    "translation": "ดูหนังกับเพื่อน (du nang kap phuean)",
+    "examples": [
+      {"sentence": "友達と映画を見ます。", "translation_th": "ดูหนังกับเพื่อน"},
+      {"sentence": "パンと牛乳を買います。", "translation_th": "ซื้อขนมปังและนม"}
+    ]
+  },
+  {
+    "id": "n5_g011",
+    "pattern": "〜が",
+    "meaning": "ตัวบ่งชี้ประธาน (tua bong chi prathan) - subject marker",
+    "meaning_th": "ตัวบ่งชี้ประธาน",
+    "meaning_ja": "〜が（主語）",
+    "level": "N5",
+    "formation": "名詞 + が + 述語",
+    "example": "猫がいます。",
+    "translation": "มีแมว (mi maeo)",
+    "examples": [
+      {"sentence": "猫がいます。", "translation_th": "มีแมว"},
+      {"sentence": "日本語が分かります。", "translation_th": "เข้าใจภาษาญี่ปุ่น"}
+    ]
+  },
+  {
+    "id": "n5_g012",
+    "pattern": "〜たい",
+    "meaning": "อยาก〜 (yak) - want to do",
+    "meaning_th": "อยาก〜",
+    "meaning_ja": "〜たい（希望）",
+    "level": "N5",
+    "formation": "動詞ます形 + たい",
+    "example": "日本に行きたいです。",
+    "translation": "อยากไปญี่ปุ่น (yak pai yipun)",
+    "examples": [
+      {"sentence": "日本に行きたいです。", "translation_th": "อยากไปญี่ปุ่น"},
+      {"sentence": "寿司を食べたいです。", "translation_th": "อยากกินซูชิ"}
+    ]
+  },
+  {
+    "id": "n5_g013",
+    "pattern": "〜ている",
+    "meaning": "กำลัง〜อยู่ (kamlang...yu) - progressive/state",
+    "meaning_th": "กำลัง〜อยู่",
+    "meaning_ja": "〜ている（進行・状態）",
+    "level": "N5",
+    "formation": "動詞て形 + いる",
+    "example": "本を読んでいます。",
+    "translation": "กำลังอ่านหนังสืออยู่ (kamlang an nang sue yu)",
+    "examples": [
+      {"sentence": "本を読んでいます。", "translation_th": "กำลังอ่านหนังสืออยู่"},
+      {"sentence": "東京に住んでいます。", "translation_th": "อาศัยอยู่ที่โตเกียว"}
+    ]
+  },
+  {
+    "id": "n5_g014",
+    "pattern": "〜た",
+    "meaning": "〜แล้ว (laeo) - past tense",
+    "meaning_th": "〜แล้ว（อดีตกาล）",
+    "meaning_ja": "〜た（過去形）",
+    "level": "N5",
+    "formation": "動詞た形",
+    "example": "昨日、映画を見ました。",
+    "translation": "เมื่อวานดูหนัง (muea wan du nang)",
+    "examples": [
+      {"sentence": "昨日、映画を見ました。", "translation_th": "เมื่อวานดูหนัง"},
+      {"sentence": "朝ご飯を食べました。", "translation_th": "กินข้าวเช้าแล้ว"}
+    ]
+  },
+  {
+    "id": "n5_g015",
+    "pattern": "〜ない",
+    "meaning": "ไม่〜 (mai) - negative verb",
+    "meaning_th": "ไม่〜",
+    "meaning_ja": "〜ない（否定）",
+    "level": "N5",
+    "formation": "動詞ない形",
+    "example": "肉を食べません。",
+    "translation": "ไม่กินเนื้อ (mai kin nuea)",
+    "examples": [
+      {"sentence": "肉を食べません。", "translation_th": "ไม่กินเนื้อ"},
+      {"sentence": "今日は学校に行きません。", "translation_th": "วันนี้ไม่ไปโรงเรียน"}
+    ]
+  },
+  {
+    "id": "n5_g016",
+    "pattern": "〜てください",
+    "meaning": "กรุณา〜 / ช่วย〜ด้วย (karuna / chuai...duai) - please do",
+    "meaning_th": "กรุณา〜 / ช่วย〜ด้วย",
+    "meaning_ja": "〜てください（依頼）",
+    "level": "N5",
+    "formation": "動詞て形 + ください",
+    "example": "ここに名前を書いてください。",
+    "translation": "กรุณาเขียนชื่อที่นี่ (karuna khian chue thi ni)",
+    "examples": [
+      {"sentence": "ここに名前を書いてください。", "translation_th": "กรุณาเขียนชื่อที่นี่"},
+      {"sentence": "もう一度言ってください。", "translation_th": "กรุณาพูดอีกครั้ง"}
+    ]
+  },
+  {
+    "id": "n5_g017",
+    "pattern": "〜てもいい",
+    "meaning": "〜ก็ได้ / 〜ได้ (ko dai / dai) - may/permission",
+    "meaning_th": "〜ก็ได้ / 〜ได้",
+    "meaning_ja": "〜てもいい（許可）",
+    "level": "N5",
+    "formation": "動詞て形 + もいい",
+    "example": "写真を撮ってもいいですか。",
+    "translation": "ถ่ายรูปได้ไหม (thai rup dai mai)",
+    "examples": [
+      {"sentence": "写真を撮ってもいいですか。", "translation_th": "ถ่ายรูปได้ไหม"},
+      {"sentence": "ここに座ってもいいですか。", "translation_th": "นั่งที่นี่ได้ไหม"}
+    ]
+  },
+  {
+    "id": "n5_g018",
+    "pattern": "〜てはいけない",
+    "meaning": "ห้าม〜 / 〜ไม่ได้ (ham / mai dai) - must not/prohibition",
+    "meaning_th": "ห้าม〜 / 〜ไม่ได้",
+    "meaning_ja": "〜てはいけない（禁止）",
+    "level": "N5",
+    "formation": "動詞て形 + はいけない",
+    "example": "ここでたばこを吸ってはいけません。",
+    "translation": "ห้ามสูบบุหรี่ที่นี่ (ham sup buri thi ni)",
+    "examples": [
+      {"sentence": "ここでたばこを吸ってはいけません。", "translation_th": "ห้ามสูบบุหรี่ที่นี่"},
+      {"sentence": "教室で食べてはいけません。", "translation_th": "ห้ามกินในห้องเรียน"}
+    ]
+  },
+  {
+    "id": "n5_g019",
+    "pattern": "〜ことができる",
+    "meaning": "สามารถ〜ได้ (samat...dai) - can/able to",
+    "meaning_th": "สามารถ〜ได้",
+    "meaning_ja": "〜ことができる（能力）",
+    "level": "N5",
+    "formation": "動詞辞書形 + ことができる",
+    "example": "日本語を話すことができます。",
+    "translation": "สามารถพูดภาษาญี่ปุ่นได้ (samat phut phasa yipun dai)",
+    "examples": [
+      {"sentence": "日本語を話すことができます。", "translation_th": "สามารถพูดภาษาญี่ปุ่นได้"},
+      {"sentence": "漢字を読むことができません。", "translation_th": "ไม่สามารถอ่านคันจิได้"}
+    ]
+  },
+  {
+    "id": "n5_g020",
+    "pattern": "〜つもり",
+    "meaning": "ตั้งใจจะ〜 (tang chai cha) - intend to",
+    "meaning_th": "ตั้งใจจะ〜",
+    "meaning_ja": "〜つもり（意志）",
+    "level": "N5",
+    "formation": "動詞辞書形 + つもりだ",
+    "example": "来年、日本に行くつもりです。",
+    "translation": "ตั้งใจจะไปญี่ปุ่นปีหน้า (tang chai cha pai yipun pi na)",
+    "examples": [
+      {"sentence": "来年、日本に行くつもりです。", "translation_th": "ตั้งใจจะไปญี่ปุ่นปีหน้า"},
+      {"sentence": "週末、勉強するつもりです。", "translation_th": "ตั้งใจจะเรียนวันหยุดสุดสัปดาห์"}
+    ]
+  },
+  {
+    "id": "n5_g021",
+    "pattern": "〜ましょう",
+    "meaning": "〜กันเถอะ (kan thoe) - let's do",
+    "meaning_th": "〜กันเถอะ",
+    "meaning_ja": "〜ましょう（勧誘）",
+    "level": "N5",
+    "formation": "動詞ます形 + ましょう",
+    "example": "一緒に食べましょう。",
+    "translation": "กินด้วยกันเถอะ (kin duai kan thoe)",
+    "examples": [
+      {"sentence": "一緒に食べましょう。", "translation_th": "กินด้วยกันเถอะ"},
+      {"sentence": "日本語で話しましょう。", "translation_th": "พูดภาษาญี่ปุ่นกันเถอะ"}
+    ]
+  },
+  {
+    "id": "n5_g022",
+    "pattern": "〜ながら",
+    "meaning": "ในขณะที่〜 / พร้อมกับ〜 (nai khana thi / phrom kap) - while doing",
+    "meaning_th": "ในขณะที่〜 / พร้อมกับ〜",
+    "meaning_ja": "〜ながら（同時動作）",
+    "level": "N5",
+    "formation": "動詞ます形 + ながら + 動詞",
+    "example": "音楽を聞きながら勉強します。",
+    "translation": "เรียนไปพร้อมกับฟังเพลง (rian pai phrom kap fang phleng)",
+    "examples": [
+      {"sentence": "音楽を聞きながら勉強します。", "translation_th": "เรียนไปพร้อมกับฟังเพลง"},
+      {"sentence": "テレビを見ながらご飯を食べます。", "translation_th": "กินข้าวไปพร้อมกับดูทีวี"}
+    ]
+  },
+  {
+    "id": "n5_g023",
+    "pattern": "〜たことがある",
+    "meaning": "เคย〜 (khoei) - have experienced",
+    "meaning_th": "เคย〜",
+    "meaning_ja": "〜たことがある（経験）",
+    "level": "N5",
+    "formation": "動詞た形 + ことがある",
+    "example": "富士山に登ったことがあります。",
+    "translation": "เคยปีนภูเขาฟูจิ (khoei pin phu khao fuji)",
+    "examples": [
+      {"sentence": "富士山に登ったことがあります。", "translation_th": "เคยปีนภูเขาฟูจิ"},
+      {"sentence": "タイ料理を食べたことがありますか。", "translation_th": "เคยกินอาหารไทยไหม"}
+    ]
+  },
+  {
+    "id": "n5_g024",
+    "pattern": "〜前に",
+    "meaning": "ก่อน〜 (kon) - before",
+    "meaning_th": "ก่อน〜",
+    "meaning_ja": "〜前に（以前）",
+    "level": "N5",
+    "formation": "動詞辞書形 / 名詞の + 前に",
+    "example": "寝る前に歯を磨きます。",
+    "translation": "แปรงฟันก่อนนอน (praeng fan kon non)",
+    "examples": [
+      {"sentence": "寝る前に歯を磨きます。", "translation_th": "แปรงฟันก่อนนอน"},
+      {"sentence": "食事の前に手を洗います。", "translation_th": "ล้างมือก่อนกินข้าว"}
+    ]
+  },
+  {
+    "id": "n5_g025",
+    "pattern": "〜た後で",
+    "meaning": "หลังจาก〜 (lang chak) - after",
+    "meaning_th": "หลังจาก〜",
+    "meaning_ja": "〜た後で（以後）",
+    "level": "N5",
+    "formation": "動詞た形 + 後で / 名詞の + 後で",
+    "example": "ご飯を食べた後で、散歩します。",
+    "translation": "หลังจากกินข้าวแล้วก็ไปเดินเล่น (lang chak kin khao laeo ko pai doen len)",
+    "examples": [
+      {"sentence": "ご飯を食べた後で、散歩します。", "translation_th": "หลังจากกินข้าวแล้วก็ไปเดินเล่น"},
+      {"sentence": "仕事の後で飲みに行きます。", "translation_th": "หลังเลิกงานไปดื่ม"}
+    ]
+  },
+  {
+    "id": "n5_g026",
+    "pattern": "〜ほうがいい",
+    "meaning": "〜ดีกว่า / ควรจะ〜 (di kwa / khuan cha) - had better/should",
+    "meaning_th": "〜ดีกว่า / ควรจะ〜",
+    "meaning_ja": "〜ほうがいい（助言）",
+    "level": "N5",
+    "formation": "動詞た形 + ほうがいい / 動詞ない形 + ほうがいい",
+    "example": "薬を飲んだほうがいいですよ。",
+    "translation": "กินยาดีกว่านะ (kin ya di kwa na)",
+    "examples": [
+      {"sentence": "薬を飲んだほうがいいですよ。", "translation_th": "กินยาดีกว่านะ"},
+      {"sentence": "早く寝たほうがいいです。", "translation_th": "นอนเร็วๆ ดีกว่า"}
+    ]
+  },
+  {
+    "id": "n5_g027",
+    "pattern": "〜より〜のほうが",
+    "meaning": "〜มากกว่า〜 (mak kwa) - more...than",
+    "meaning_th": "〜มากกว่า〜",
+    "meaning_ja": "〜より〜のほうが（比較）",
+    "level": "N5",
+    "formation": "A より B のほうが + 形容詞",
+    "example": "電車よりバスのほうが安いです。",
+    "translation": "รถบัสถูกกว่ารถไฟ (rot bat thuk kwa rot fai)",
+    "examples": [
+      {"sentence": "電車よりバスのほうが安いです。", "translation_th": "รถบัสถูกกว่ารถไฟ"},
+      {"sentence": "夏より冬のほうが好きです。", "translation_th": "ชอบฤดูหนาวมากกว่าฤดูร้อน"}
+    ]
+  },
+  {
+    "id": "n5_g028",
+    "pattern": "〜と思う",
+    "meaning": "คิดว่า〜 (khit wa) - I think that",
+    "meaning_th": "คิดว่า〜",
+    "meaning_ja": "〜と思う（意見）",
+    "level": "N5",
+    "formation": "普通形 + と思う",
+    "example": "明日は雨が降ると思います。",
+    "translation": "คิดว่าพรุ่งนี้ฝนจะตก (khit wa phrung ni fon cha tok)",
+    "examples": [
+      {"sentence": "明日は雨が降ると思います。", "translation_th": "คิดว่าพรุ่งนี้ฝนจะตก"},
+      {"sentence": "この映画はおもしろいと思います。", "translation_th": "คิดว่าหนังเรื่องนี้สนุก"}
+    ]
+  },
+  {
+    "id": "n5_g029",
+    "pattern": "まだ〜ていない",
+    "meaning": "ยังไม่ได้〜 (yang mai dai) - not yet",
+    "meaning_th": "ยังไม่ได้〜",
+    "meaning_ja": "まだ〜ていない（未完了）",
+    "level": "N5",
+    "formation": "まだ + 動詞て形 + いない",
+    "example": "まだ宿題をしていません。",
+    "translation": "ยังไม่ได้ทำการบ้าน (yang mai dai tham kan ban)",
+    "examples": [
+      {"sentence": "まだ宿題をしていません。", "translation_th": "ยังไม่ได้ทำการบ้าน"},
+      {"sentence": "まだ昼ご飯を食べていません。", "translation_th": "ยังไม่ได้กินข้าวเที่ยง"}
+    ]
+  },
+  {
+    "id": "n5_g030",
+    "pattern": "〜すぎる",
+    "meaning": "〜เกินไป (koen pai) - too much/too",
+    "meaning_th": "〜เกินไป",
+    "meaning_ja": "〜すぎる（過度）",
+    "level": "N5",
+    "formation": "動詞ます形 / い形容詞語幹 / な形容詞語幹 + すぎる",
+    "example": "食べすぎました。",
+    "translation": "กินมากเกินไป (kin mak koen pai)",
+    "examples": [
+      {"sentence": "食べすぎました。", "translation_th": "กินมากเกินไป"},
+      {"sentence": "この問題は難しすぎます。", "translation_th": "โจทย์ข้อนี้ยากเกินไป"}
+    ]
+  },
+  {
+    "id": "n5_g031",
+    "pattern": "〜やすい / 〜にくい",
+    "meaning": "〜ง่าย / 〜ยาก (ngai / yak) - easy to / hard to",
+    "meaning_th": "〜ง่าย / 〜ยาก",
+    "meaning_ja": "〜やすい / 〜にくい（容易・困難）",
+    "level": "N5",
+    "formation": "動詞ます形 + やすい / にくい",
+    "example": "この本は読みやすいです。",
+    "translation": "หนังสือเล่มนี้อ่านง่าย (nang sue lem ni an ngai)",
+    "examples": [
+      {"sentence": "この本は読みやすいです。", "translation_th": "หนังสือเล่มนี้อ่านง่าย"},
+      {"sentence": "この漢字は覚えにくいです。", "translation_th": "คันจิตัวนี้จำยาก"}
+    ]
+  }
+]

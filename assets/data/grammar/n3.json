@@ -1,0 +1,482 @@
+[
+  {
+    "id": "n3_g001",
+    "pattern": "〜にとって",
+    "meaning": "สำหรับ〜แล้ว (samrap...laew) - for (someone)",
+    "meaning_th": "สำหรับ〜แล้ว",
+    "meaning_ja": "〜の立場から見て",
+    "level": "N3",
+    "formation": "名詞 + にとって",
+    "example": "私にとって、日本語は難しいです。",
+    "translation": "สำหรับฉันแล้ว ภาษาญี่ปุ่นยาก (samrap chan laew phasa yipun yak)",
+    "examples": [
+      {"sentence": "私にとって、日本語は難しいです。", "translation_th": "สำหรับฉันแล้ว ภาษาญี่ปุ่นยาก"},
+      {"sentence": "子供にとって、この映画は怖い。", "translation_th": "สำหรับเด็กๆ แล้ว หนังเรื่องนี้น่ากลัว"}
+    ]
+  },
+  {
+    "id": "n3_g002",
+    "pattern": "〜について",
+    "meaning": "เกี่ยวกับ〜 (kiao kap) - about/regarding",
+    "meaning_th": "เกี่ยวกับ〜",
+    "meaning_ja": "〜に関する話題",
+    "level": "N3",
+    "formation": "名詞 + について",
+    "example": "日本の文化について調べました。",
+    "translation": "ศึกษาเกี่ยวกับวัฒนธรรมญี่ปุ่น (sueksa kiao kap watthanatham yipun)",
+    "examples": [
+      {"sentence": "日本の文化について調べました。", "translation_th": "ศึกษาเกี่ยวกับวัฒนธรรมญี่ปุ่น"},
+      {"sentence": "この問題について話し合いましょう。", "translation_th": "มาพูดคุยเกี่ยวกับปัญหานี้กันเถอะ"}
+    ]
+  },
+  {
+    "id": "n3_g003",
+    "pattern": "〜に対して",
+    "meaning": "ต่อ〜 / เมื่อเทียบกับ〜 (taw / muea thiap kap) - towards/against/in contrast to",
+    "meaning_th": "ต่อ〜 / เมื่อเทียบกับ〜",
+    "meaning_ja": "〜に向かって・〜と比べて",
+    "level": "N3",
+    "formation": "名詞 + に対して",
+    "example": "先生に対して失礼なことを言ってはいけない。",
+    "translation": "ไม่ควรพูดจาเสียมารยาทต่อครู (mai khuan phut ja sia marayat taw khru)",
+    "examples": [
+      {"sentence": "先生に対して失礼なことを言ってはいけない。", "translation_th": "ไม่ควรพูดจาเสียมารยาทต่อครู"},
+      {"sentence": "兄は静かなのに対して、弟はうるさい。", "translation_th": "พี่ชายเงียบ เมื่อเทียบกับน้องชายที่เสียงดัง"}
+    ]
+  },
+  {
+    "id": "n3_g004",
+    "pattern": "〜によって",
+    "meaning": "โดย〜 / ขึ้นอยู่กับ〜 (doi / khuen yu kap) - by means of/depending on",
+    "meaning_th": "โดย〜 / ขึ้นอยู่กับ〜",
+    "meaning_ja": "〜の手段で・〜次第で",
+    "level": "N3",
+    "formation": "名詞 + によって",
+    "example": "国によって文化が違います。",
+    "translation": "วัฒนธรรมแตกต่างกันขึ้นอยู่กับประเทศ (watthanatham taek tang kan khuen yu kap prathet)",
+    "examples": [
+      {"sentence": "国によって文化が違います。", "translation_th": "วัฒนธรรมแตกต่างกันขึ้นอยู่กับประเทศ"},
+      {"sentence": "この小説は有名な作家によって書かれました。", "translation_th": "นิยายเรื่องนี้ถูกเขียนโดยนักเขียนที่มีชื่อเสียง"}
+    ]
+  },
+  {
+    "id": "n3_g005",
+    "pattern": "〜として",
+    "meaning": "ในฐานะ〜 (nai thana) - as/in the role of",
+    "meaning_th": "ในฐานะ〜",
+    "meaning_ja": "〜の立場・資格で",
+    "level": "N3",
+    "formation": "名詞 + として",
+    "example": "彼は医者として働いています。",
+    "translation": "เขาทำงานในฐานะหมอ (khao thamgan nai thana maw)",
+    "examples": [
+      {"sentence": "彼は医者として働いています。", "translation_th": "เขาทำงานในฐานะหมอ"},
+      {"sentence": "留学生として日本に来ました。", "translation_th": "มาญี่ปุ่นในฐานะนักเรียนแลกเปลี่ยน"}
+    ]
+  },
+  {
+    "id": "n3_g006",
+    "pattern": "〜わけだ",
+    "meaning": "ก็เลย〜 / หมายความว่า〜 (ko loei / mai khwam wa) - that's why/means that",
+    "meaning_th": "ก็เลย〜 / หมายความว่า〜",
+    "meaning_ja": "つまり〜ということだ",
+    "level": "N3",
+    "formation": "普通形 + わけだ",
+    "example": "毎日練習しているから、上手になるわけだ。",
+    "translation": "ฝึกทุกวัน ก็เลยเก่งขึ้น (fuek thuk wan ko loei keng khuen)",
+    "examples": [
+      {"sentence": "毎日練習しているから、上手になるわけだ。", "translation_th": "ฝึกทุกวัน ก็เลยเก่งขึ้น"},
+      {"sentence": "彼は日本に10年住んでいた。日本語が上手なわけだ。", "translation_th": "เขาอยู่ญี่ปุ่น 10 ปี ก็เลยพูดญี่ปุ่นเก่ง"}
+    ]
+  },
+  {
+    "id": "n3_g007",
+    "pattern": "〜わけがない",
+    "meaning": "ไม่มีทาง〜 (mai mi thang) - there's no way",
+    "meaning_th": "ไม่มีทาง〜",
+    "meaning_ja": "〜はずがない・絶対に〜ない",
+    "level": "N3",
+    "formation": "普通形 + わけがない",
+    "example": "彼がそんなことを言うわけがない。",
+    "translation": "ไม่มีทางที่เขาจะพูดแบบนั้น (mai mi thang thi khao ja phut baep nan)",
+    "examples": [
+      {"sentence": "彼がそんなことを言うわけがない。", "translation_th": "ไม่มีทางที่เขาจะพูดแบบนั้น"},
+      {"sentence": "こんな簡単な問題がわからないわけがない。", "translation_th": "ไม่มีทางที่จะไม่เข้าใจปัญหาง่ายๆ แบบนี้"}
+    ]
+  },
+  {
+    "id": "n3_g008",
+    "pattern": "〜わけにはいかない",
+    "meaning": "ไม่สามารถ〜ได้ (mai samat...dai) - can't just/must not",
+    "meaning_th": "ไม่สามารถ〜ได้",
+    "meaning_ja": "〜するわけにはいかない（事情があって）",
+    "level": "N3",
+    "formation": "動詞辞書形 + わけにはいかない",
+    "example": "約束したから、行かないわけにはいかない。",
+    "translation": "สัญญาแล้ว จะไม่ไปไม่ได้ (sanya laew ja mai pai mai dai)",
+    "examples": [
+      {"sentence": "試験があるから、遊んでいるわけにはいかない。", "translation_th": "มีสอบ จะเที่ยวเล่นอยู่ไม่ได้"},
+      {"sentence": "お金がないから、買うわけにはいかない。", "translation_th": "ไม่มีเงิน จะซื้อไม่ได้"}
+    ]
+  },
+  {
+    "id": "n3_g009",
+    "pattern": "〜ことはない",
+    "meaning": "ไม่จำเป็นต้อง〜 (mai jampen tong) - no need to",
+    "meaning_th": "ไม่จำเป็นต้อง〜",
+    "meaning_ja": "〜する必要はない",
+    "level": "N3",
+    "formation": "動詞辞書形 + ことはない",
+    "example": "そんなに心配することはないよ。",
+    "translation": "ไม่จำเป็นต้องกังวลขนาดนั้น (mai jampen tong kangwon khanat nan)",
+    "examples": [
+      {"sentence": "そんなに心配することはないよ。", "translation_th": "ไม่จำเป็นต้องกังวลขนาดนั้น"},
+      {"sentence": "急ぐことはない。まだ時間がある。", "translation_th": "ไม่จำเป็นต้องรีบ ยังมีเวลา"}
+    ]
+  },
+  {
+    "id": "n3_g010",
+    "pattern": "〜ざるを得ない",
+    "meaning": "จำเป็นต้อง〜 / ไม่มีทางเลือกนอกจาก〜 (jampen tong / mai mi thang lueak nok jak) - have no choice but to",
+    "meaning_th": "จำเป็นต้อง〜 / ไม่มีทางเลือกนอกจาก〜",
+    "meaning_ja": "〜しなければならない（仕方なく）",
+    "level": "N3",
+    "formation": "動詞ない形（ない→ざる） + を得ない",
+    "example": "電車が止まったので、タクシーに乗らざるを得なかった。",
+    "translation": "รถไฟหยุดวิ่ง เลยจำเป็นต้องนั่งแท็กซี่ (rot fai yut wing loei jampen tong nang thaeksi)",
+    "examples": [
+      {"sentence": "電車が止まったので、タクシーに乗らざるを得なかった。", "translation_th": "รถไฟหยุดวิ่ง เลยจำเป็นต้องนั่งแท็กซี่"},
+      {"sentence": "証拠があるから、認めざるを得ない。", "translation_th": "มีหลักฐาน เลยจำเป็นต้องยอมรับ"}
+    ]
+  },
+  {
+    "id": "n3_g011",
+    "pattern": "〜ないわけにはいかない",
+    "meaning": "ต้อง〜 / ไม่ทำไม่ได้ (tong / mai tham mai dai) - must do/can't not do",
+    "meaning_th": "ต้อง〜 / ไม่ทำไม่ได้",
+    "meaning_ja": "〜しなければならない",
+    "level": "N3",
+    "formation": "動詞ない形 + わけにはいかない",
+    "example": "招待されたから、行かないわけにはいかない。",
+    "translation": "ถูกเชิญแล้ว จะไม่ไปไม่ได้ (thuk choen laew ja mai pai mai dai)",
+    "examples": [
+      {"sentence": "招待されたから、行かないわけにはいかない。", "translation_th": "ถูกเชิญแล้ว จะไม่ไปไม่ได้"},
+      {"sentence": "上司の命令だから、やらないわけにはいかない。", "translation_th": "เป็นคำสั่งหัวหน้า จะไม่ทำไม่ได้"}
+    ]
+  },
+  {
+    "id": "n3_g012",
+    "pattern": "〜っぽい",
+    "meaning": "ดูเหมือน〜 / มีลักษณะ〜 (du muean / mi laksana) - seems like/-ish",
+    "meaning_th": "ดูเหมือน〜 / มีลักษณะ〜",
+    "meaning_ja": "〜のような感じがする",
+    "level": "N3",
+    "formation": "名詞・動詞ます形・い形容詞語幹 + っぽい",
+    "example": "彼女は男っぽい性格だ。",
+    "translation": "เธอมีนิสัยเหมือนผู้ชาย (thoe mi nisai muean phuchai)",
+    "examples": [
+      {"sentence": "彼女は男っぽい性格だ。", "translation_th": "เธอมีนิสัยเหมือนผู้ชาย"},
+      {"sentence": "最近、忘れっぽくなった。", "translation_th": "ช่วงนี้ชอบลืมบ่อย"}
+    ]
+  },
+  {
+    "id": "n3_g013",
+    "pattern": "〜向き",
+    "meaning": "เหมาะสำหรับ〜 (maw samrap) - suited for",
+    "meaning_th": "เหมาะสำหรับ〜",
+    "meaning_ja": "〜に適している",
+    "level": "N3",
+    "formation": "名詞 + 向き",
+    "example": "この本は初心者向きです。",
+    "translation": "หนังสือเล่มนี้เหมาะสำหรับผู้เริ่มต้น (nangsue lem ni maw samrap phu roem ton)",
+    "examples": [
+      {"sentence": "この本は初心者向きです。", "translation_th": "หนังสือเล่มนี้เหมาะสำหรับผู้เริ่มต้น"},
+      {"sentence": "この料理は子供向きだ。", "translation_th": "อาหารจานนี้เหมาะสำหรับเด็ก"}
+    ]
+  },
+  {
+    "id": "n3_g014",
+    "pattern": "〜向け",
+    "meaning": "มุ่งเป้าไปที่〜 / สำหรับ〜 (mung pao pai thi / samrap) - aimed at/targeted for",
+    "meaning_th": "มุ่งเป้าไปที่〜 / สำหรับ〜",
+    "meaning_ja": "〜を対象にして作られた",
+    "level": "N3",
+    "formation": "名詞 + 向け",
+    "example": "これは外国人向けのガイドブックです。",
+    "translation": "นี่คือหนังสือนำเที่ยวสำหรับชาวต่างชาติ (ni khue nangsue nam thiao samrap chao tang chat)",
+    "examples": [
+      {"sentence": "これは外国人向けのガイドブックです。", "translation_th": "นี่คือหนังสือนำเที่ยวสำหรับชาวต่างชาติ"},
+      {"sentence": "大人向けの番組は夜に放送される。", "translation_th": "รายการสำหรับผู้ใหญ่จะออกอากาศตอนกลางคืน"}
+    ]
+  },
+  {
+    "id": "n3_g015",
+    "pattern": "〜がち",
+    "meaning": "มักจะ〜 / มีแนวโน้มที่จะ〜 (mak ja / mi naeonom thi ja) - tend to",
+    "meaning_th": "มักจะ〜 / มีแนวโน้มที่จะ〜",
+    "meaning_ja": "〜しやすい（悪い傾向）",
+    "level": "N3",
+    "formation": "動詞ます形・名詞 + がち",
+    "example": "最近、仕事を休みがちだ。",
+    "translation": "ช่วงนี้มักจะขาดงานบ่อย (chuang ni mak ja khat ngan boi)",
+    "examples": [
+      {"sentence": "最近、仕事を休みがちだ。", "translation_th": "ช่วงนี้มักจะขาดงานบ่อย"},
+      {"sentence": "冬は風邪を引きがちだ。", "translation_th": "หน้าหนาวมักจะเป็นหวัดบ่อย"}
+    ]
+  },
+  {
+    "id": "n3_g016",
+    "pattern": "〜気味",
+    "meaning": "มีท่าทีว่า〜 เล็กน้อย (mi thathi wa...lek noi) - slightly/a touch of",
+    "meaning_th": "มีท่าทีว่า〜เล็กน้อย",
+    "meaning_ja": "少し〜の傾向がある",
+    "level": "N3",
+    "formation": "動詞ます形・名詞 + 気味",
+    "example": "最近、太り気味です。",
+    "translation": "ช่วงนี้มีท่าทีว่าจะอ้วนขึ้นเล็กน้อย (chuang ni mi thathi wa ja uan khuen lek noi)",
+    "examples": [
+      {"sentence": "最近、太り気味です。", "translation_th": "ช่วงนี้มีท่าทีว่าจะอ้วนขึ้นเล็กน้อย"},
+      {"sentence": "風邪気味なので、早く寝ます。", "translation_th": "รู้สึกว่าจะเป็นหวัดนิดๆ เลยจะนอนเร็ว"}
+    ]
+  },
+  {
+    "id": "n3_g017",
+    "pattern": "〜最中に",
+    "meaning": "กำลัง〜อยู่พอดี (kamlang...yu phodi) - in the middle of",
+    "meaning_th": "กำลัง〜อยู่พอดี",
+    "meaning_ja": "ちょうど〜しているとき",
+    "level": "N3",
+    "formation": "動詞ている・名詞の + 最中に",
+    "example": "会議の最中に電話が鳴った。",
+    "translation": "โทรศัพท์ดังตอนกำลังประชุมอยู่พอดี (thorasap dang ton kamlang prachum yu phodi)",
+    "examples": [
+      {"sentence": "会議の最中に電話が鳴った。", "translation_th": "โทรศัพท์ดังตอนกำลังประชุมอยู่พอดี"},
+      {"sentence": "食事の最中に地震が起きた。", "translation_th": "แผ่นดินไหวเกิดขึ้นตอนกำลังกินข้าวอยู่พอดี"}
+    ]
+  },
+  {
+    "id": "n3_g018",
+    "pattern": "〜たびに",
+    "meaning": "ทุกครั้งที่〜 (thuk khrang thi) - every time",
+    "meaning_th": "ทุกครั้งที่〜",
+    "meaning_ja": "〜するたびに毎回",
+    "level": "N3",
+    "formation": "動詞辞書形・名詞の + たびに",
+    "example": "日本に行くたびに、お土産を買います。",
+    "translation": "ทุกครั้งที่ไปญี่ปุ่น จะซื้อของฝาก (thuk khrang thi pai yipun ja sue khong fak)",
+    "examples": [
+      {"sentence": "日本に行くたびに、お土産を買います。", "translation_th": "ทุกครั้งที่ไปญี่ปุ่น จะซื้อของฝาก"},
+      {"sentence": "この曲を聞くたびに、学生時代を思い出す。", "translation_th": "ทุกครั้งที่ฟังเพลงนี้ ก็นึกถึงสมัยเป็นนักเรียน"}
+    ]
+  },
+  {
+    "id": "n3_g019",
+    "pattern": "〜うちに",
+    "meaning": "ในขณะที่〜 / ก่อนที่จะสาย (nai khana thi / kon thi ja sai) - while/before it's too late",
+    "meaning_th": "ในขณะที่〜 / ก่อนที่จะสาย",
+    "meaning_ja": "〜の間に（変わる前に）",
+    "level": "N3",
+    "formation": "動詞辞書形・ない形・い形容詞・名詞の + うちに",
+    "example": "若いうちに、たくさん旅行したい。",
+    "translation": "อยากเที่ยวเยอะๆ ในขณะที่ยังหนุ่มสาว (yak thiao yoe yoe nai khana thi yang num sao)",
+    "examples": [
+      {"sentence": "若いうちに、たくさん旅行したい。", "translation_th": "อยากเที่ยวเยอะๆ ในขณะที่ยังหนุ่มสาว"},
+      {"sentence": "忘れないうちにメモしておこう。", "translation_th": "จดไว้ก่อนที่จะลืม"}
+    ]
+  },
+  {
+    "id": "n3_g020",
+    "pattern": "〜ついでに",
+    "meaning": "ถือโอกาส〜ไปด้วย / ระหว่างที่〜 (thue okat...pai duai / rawang thi) - while you're at it",
+    "meaning_th": "ถือโอกาส〜ไปด้วย",
+    "meaning_ja": "〜するときに、一緒に",
+    "level": "N3",
+    "formation": "動詞た形・辞書形・名詞の + ついでに",
+    "example": "買い物のついでに、郵便局に寄った。",
+    "translation": "ถือโอกาสระหว่างไปซื้อของ แวะไปที่ทำการไปรษณีย์ด้วย (thue okat rawang pai sue khong wae pai thi thamkan praisani duai)",
+    "examples": [
+      {"sentence": "買い物のついでに、郵便局に寄った。", "translation_th": "ถือโอกาสระหว่างไปซื้อของ แวะไปที่ทำการไปรษณีย์ด้วย"},
+      {"sentence": "散歩のついでに、パンを買ってきた。", "translation_th": "ถือโอกาสระหว่างไปเดินเล่น ซื้อขนมปังมาด้วย"}
+    ]
+  },
+  {
+    "id": "n3_g021",
+    "pattern": "〜かわりに",
+    "meaning": "แทนที่จะ〜 / เป็นการแลกเปลี่ยน (thaen thi ja / pen kan laek plian) - instead of/in exchange for",
+    "meaning_th": "แทนที่จะ〜 / เป็นการแลกเปลี่ยน",
+    "meaning_ja": "〜の代わりとして",
+    "level": "N3",
+    "formation": "動詞普通形・名詞の + かわりに",
+    "example": "肉のかわりに、豆腐を使いました。",
+    "translation": "ใช้เต้าหู้แทนเนื้อสัตว์ (chai taohu thaen nuea sat)",
+    "examples": [
+      {"sentence": "肉のかわりに、豆腐を使いました。", "translation_th": "ใช้เต้าหู้แทนเนื้อสัตว์"},
+      {"sentence": "手伝ってくれたかわりに、ご飯をおごった。", "translation_th": "เป็นการตอบแทนที่ช่วย ก็เลยเลี้ยงข้าว"}
+    ]
+  },
+  {
+    "id": "n3_g022",
+    "pattern": "〜おかげで",
+    "meaning": "ต้องขอบคุณ〜 / เพราะ〜 (tong khopkhun / phro) - thanks to (positive cause)",
+    "meaning_th": "ต้องขอบคุณ〜 / เพราะ〜",
+    "meaning_ja": "〜のおかげで（良い結果）",
+    "level": "N3",
+    "formation": "動詞普通形・名詞の + おかげで",
+    "example": "先生のおかげで、試験に合格しました。",
+    "translation": "ต้องขอบคุณอาจารย์ ที่ทำให้สอบผ่าน (tong khopkhun achan thi thamhai sop phan)",
+    "examples": [
+      {"sentence": "先生のおかげで、試験に合格しました。", "translation_th": "ต้องขอบคุณอาจารย์ ที่ทำให้สอบผ่าน"},
+      {"sentence": "薬を飲んだおかげで、熱が下がった。", "translation_th": "เพราะกินยา ไข้เลยลด"}
+    ]
+  },
+  {
+    "id": "n3_g023",
+    "pattern": "〜せいで",
+    "meaning": "เพราะ〜 (ในทางลบ) (phro...nai thang lop) - because of (negative cause)",
+    "meaning_th": "เพราะ〜 (ในทางลบ)",
+    "meaning_ja": "〜のせいで（悪い結果）",
+    "level": "N3",
+    "formation": "動詞普通形・名詞の + せいで",
+    "example": "雨のせいで、試合が中止になった。",
+    "translation": "เพราะฝนตก การแข่งขันถูกยกเลิก (phro fon tok kan khaengkhan thuk yok loek)",
+    "examples": [
+      {"sentence": "雨のせいで、試合が中止になった。", "translation_th": "เพราะฝนตก การแข่งขันถูกยกเลิก"},
+      {"sentence": "寝坊したせいで、遅刻した。", "translation_th": "เพราะนอนตื่นสาย เลยไปสาย"}
+    ]
+  },
+  {
+    "id": "n3_g024",
+    "pattern": "〜くせに",
+    "meaning": "ทั้งๆ ที่〜 (thang thang thi) - even though/despite (with criticism)",
+    "meaning_th": "ทั้งๆ ที่〜",
+    "meaning_ja": "〜のに（非難の気持ち）",
+    "level": "N3",
+    "formation": "動詞普通形・い形容詞・な形容詞な・名詞の + くせに",
+    "example": "知っているくせに、教えてくれない。",
+    "translation": "ทั้งๆ ที่รู้ แต่ไม่ยอมบอก (thang thang thi ru tae mai yom bok)",
+    "examples": [
+      {"sentence": "知っているくせに、教えてくれない。", "translation_th": "ทั้งๆ ที่รู้ แต่ไม่ยอมบอก"},
+      {"sentence": "お金があるくせに、ケチだ。", "translation_th": "ทั้งๆ ที่มีเงิน แต่กลับขี้เหนียว"}
+    ]
+  },
+  {
+    "id": "n3_g025",
+    "pattern": "〜ものの",
+    "meaning": "แม้ว่า〜ก็ตาม (mae wa...ko tam) - although/even though",
+    "meaning_th": "แม้ว่า〜ก็ตาม",
+    "meaning_ja": "〜けれども（期待と違う結果）",
+    "level": "N3",
+    "formation": "動詞普通形・い形容詞・な形容詞な + ものの",
+    "example": "本を買ったものの、まだ読んでいない。",
+    "translation": "แม้ว่าจะซื้อหนังสือมา แต่ยังไม่ได้อ่าน (mae wa ja sue nangsue ma tae yang mai dai an)",
+    "examples": [
+      {"sentence": "本を買ったものの、まだ読んでいない。", "translation_th": "แม้ว่าจะซื้อหนังสือมา แต่ยังไม่ได้อ่าน"},
+      {"sentence": "日本語を勉強しているものの、なかなか上達しない。", "translation_th": "แม้ว่าจะเรียนภาษาญี่ปุ่น แต่ก็ไม่ค่อยเก่งขึ้น"}
+    ]
+  },
+  {
+    "id": "n3_g026",
+    "pattern": "〜一方だ",
+    "meaning": "ยิ่ง〜มากขึ้นเรื่อยๆ (ying...mak khuen rueai rueai) - keeps on -ing/more and more",
+    "meaning_th": "ยิ่ง〜มากขึ้นเรื่อยๆ",
+    "meaning_ja": "ますます〜になる",
+    "level": "N3",
+    "formation": "動詞辞書形 + 一方だ",
+    "example": "物価は上がる一方だ。",
+    "translation": "ค่าครองชีพยิ่งสูงขึ้นเรื่อยๆ (kha khrong chip ying sung khuen rueai rueai)",
+    "examples": [
+      {"sentence": "物価は上がる一方だ。", "translation_th": "ค่าครองชีพยิ่งสูงขึ้นเรื่อยๆ"},
+      {"sentence": "人口は減る一方だ。", "translation_th": "ประชากรยิ่งลดลงเรื่อยๆ"}
+    ]
+  },
+  {
+    "id": "n3_g027",
+    "pattern": "〜ばかりか",
+    "meaning": "ไม่เพียงแต่〜 (mai phiang tae) - not only...but also",
+    "meaning_th": "ไม่เพียงแต่〜",
+    "meaning_ja": "〜だけでなく",
+    "level": "N3",
+    "formation": "動詞普通形・い形容詞・な形容詞な・名詞 + ばかりか",
+    "example": "彼は英語ばかりか、中国語も話せる。",
+    "translation": "เขาไม่เพียงแต่พูดอังกฤษ ยังพูดจีนได้ด้วย (khao mai phiang tae phut angkrit yang phut jin dai duai)",
+    "examples": [
+      {"sentence": "彼は英語ばかりか、中国語も話せる。", "translation_th": "เขาไม่เพียงแต่พูดอังกฤษ ยังพูดจีนได้ด้วย"},
+      {"sentence": "この店は安いばかりか、おいしい。", "translation_th": "ร้านนี้ไม่เพียงแต่ถูก ยังอร่อยด้วย"}
+    ]
+  },
+  {
+    "id": "n3_g028",
+    "pattern": "〜とともに",
+    "meaning": "พร้อมกับ〜 / ไปพร้อมๆ กับ〜 (phrom kap / pai phrom phrom kap) - together with/as",
+    "meaning_th": "พร้อมกับ〜 / ไปพร้อมๆ กับ〜",
+    "meaning_ja": "〜と一緒に・〜につれて",
+    "level": "N3",
+    "formation": "動詞辞書形・名詞 + とともに",
+    "example": "時代とともに、生活が変わった。",
+    "translation": "ชีวิตเปลี่ยนไปพร้อมกับยุคสมัย (chiwit plian pai phrom kap yuk samai)",
+    "examples": [
+      {"sentence": "時代とともに、生活が変わった。", "translation_th": "ชีวิตเปลี่ยนไปพร้อมกับยุคสมัย"},
+      {"sentence": "家族とともに、タイに引っ越しました。", "translation_th": "ย้ายมาไทยพร้อมกับครอบครัว"}
+    ]
+  },
+  {
+    "id": "n3_g029",
+    "pattern": "〜に関して",
+    "meaning": "เกี่ยวกับ〜 (kiao kap) - regarding/concerning (formal)",
+    "meaning_th": "เกี่ยวกับ〜",
+    "meaning_ja": "〜について（硬い表現）",
+    "level": "N3",
+    "formation": "名詞 + に関して",
+    "example": "この件に関して、ご質問はありますか。",
+    "translation": "เกี่ยวกับเรื่องนี้ มีคำถามไหมครับ (kiao kap rueang ni mi khamtham mai khrap)",
+    "examples": [
+      {"sentence": "この件に関して、ご質問はありますか。", "translation_th": "เกี่ยวกับเรื่องนี้ มีคำถามไหมครับ"},
+      {"sentence": "環境問題に関して、レポートを書いた。", "translation_th": "เขียนรายงานเกี่ยวกับปัญหาสิ่งแวดล้อม"}
+    ]
+  },
+  {
+    "id": "n3_g030",
+    "pattern": "〜に基づいて",
+    "meaning": "โดยอ้างอิงจาก〜 / บนพื้นฐานของ〜 (doi ang ing jak / bon phuen than khong) - based on",
+    "meaning_th": "โดยอ้างอิงจาก〜 / บนพื้นฐานของ〜",
+    "meaning_ja": "〜を基にして",
+    "level": "N3",
+    "formation": "名詞 + に基づいて",
+    "example": "事実に基づいて、判断してください。",
+    "translation": "กรุณาตัดสินโดยอ้างอิงจากข้อเท็จจริง (karuna tatsin doi ang ing jak kho thetching)",
+    "examples": [
+      {"sentence": "事実に基づいて、判断してください。", "translation_th": "กรุณาตัดสินโดยอ้างอิงจากข้อเท็จจริง"},
+      {"sentence": "この映画は実話に基づいている。", "translation_th": "หนังเรื่องนี้สร้างจากเรื่องจริง"}
+    ]
+  },
+  {
+    "id": "n3_g031",
+    "pattern": "〜を通じて",
+    "meaning": "ผ่านทาง〜 / ตลอด〜 (phan thang / talot) - through/throughout",
+    "meaning_th": "ผ่านทาง〜 / ตลอด〜",
+    "meaning_ja": "〜を通して・〜の間ずっと",
+    "level": "N3",
+    "formation": "名詞 + を通じて",
+    "example": "インターネットを通じて、友達ができた。",
+    "translation": "ได้เพื่อนผ่านทางอินเทอร์เน็ต (dai phuean phan thang inthoenet)",
+    "examples": [
+      {"sentence": "インターネットを通じて、友達ができた。", "translation_th": "ได้เพื่อนผ่านทางอินเทอร์เน็ต"},
+      {"sentence": "一年を通じて、暖かい地域に住みたい。", "translation_th": "อยากอาศัยอยู่ในพื้นที่ที่อบอุ่นตลอดทั้งปี"}
+    ]
+  },
+  {
+    "id": "n3_g032",
+    "pattern": "〜に限り",
+    "meaning": "จำกัดเฉพาะ〜 (jamkat chaphaw) - limited to/only",
+    "meaning_th": "จำกัดเฉพาะ〜",
+    "meaning_ja": "〜だけ特別に",
+    "level": "N3",
+    "formation": "名詞 + に限り",
+    "example": "本日に限り、全品半額です。",
+    "translation": "จำกัดเฉพาะวันนี้ สินค้าทุกชิ้นลดครึ่งราคา (jamkat chaphaw wan ni sinkhaa thuk chin lot khrueng rakha)",
+    "examples": [
+      {"sentence": "本日に限り、全品半額です。", "translation_th": "จำกัดเฉพาะวันนี้ สินค้าทุกชิ้นลดครึ่งราคา"},
+      {"sentence": "会員に限り、入場無料です。", "translation_th": "จำกัดเฉพาะสมาชิก เข้าชมฟรี"}
+    ]
+  }
+]
