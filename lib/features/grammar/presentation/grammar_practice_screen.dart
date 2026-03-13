@@ -486,7 +486,6 @@ class _GrammarPracticeScreenState extends State<GrammarPracticeScreen> {
               ),
             if (!_answered) const SizedBox(height: 20),
           ],
-          ),
         ),
       ),
     );

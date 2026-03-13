@@ -498,7 +498,6 @@ class _MockTestScreenState extends State<MockTestScreen> {
           ),
         ],
       ),
-      ),
     );
   }
 
